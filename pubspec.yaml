@@ -1,0 +1,16 @@
+name: flame_behaviors
+description: Behavioral composition pattern for Flame.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.0 <3.0.0"
+
+dependencies:
+  flame: ^1.1.1
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flame_test: ^1.4.0
+  mocktail: ^0.3.0
+  very_good_analysis: ^2.4.0
