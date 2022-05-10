@@ -39,21 +39,22 @@ class PassableCollisionBehavior extends Behavior with CollisionCallbacks {
   }
 
   /// List of [CollisionBehavior]s to which it can pass to.
-  late final List<CollisionBehavior> _passToBehaviors;
+  List<CollisionBehavior> _passToBehaviors = [];
 
   @override
-  void onCollision(
-    Set<Vector2> intersectionPoints,
-    PositionComponent other,
-  ) {
+  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+    if (other.parent is! PassableCollisionBehavior && other.parent is! Entity) {
+      return super.onCollision(intersectionPoints, other);
+    }
+    final parent = other.parent;
+
+    final otherEntity = parent is Entity
+        ? parent
+        : (parent as PassableCollisionBehavior?)!.parent;
+
     for (final behavior in _passToBehaviors) {
-      if (behavior.isValid(other)) {
-        behavior.onCollision(intersectionPoints, other);
-      } else if (other.parent != null && behavior.isValid(other.parent!)) {
-        behavior.onCollision(intersectionPoints, other.parent!);
-      } else if (other.parent?.parent != null &&
-          behavior.isValid(other.parent!.parent!)) {
-        behavior.onCollision(intersectionPoints, other.parent!.parent!);
+      if (behavior.isValid(otherEntity)) {
+        behavior.onCollision(intersectionPoints, otherEntity);
       }
     }
     super.onCollision(intersectionPoints, other);

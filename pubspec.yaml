@@ -11,6 +11,14 @@ dependencies:
     sdk: flutter
 
 dev_dependencies:
+  flutter_test:
+    sdk: flutter
   flame_test: ^1.4.0
   mocktail: ^0.3.0
   very_good_analysis: ^2.4.0
+
+dependency_overrides:
+  flame:
+    git: 
+      url: https://github.com/flame-engine/flame
+      path: packages/flame
