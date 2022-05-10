@@ -11,9 +11,9 @@ dependencies:
     sdk: flutter
 
 dev_dependencies:
+  flame_test: ^1.4.0
   flutter_test:
     sdk: flutter
-  flame_test: ^1.4.0
   mocktail: ^0.3.0
   very_good_analysis: ^2.4.0
 
