@@ -23,7 +23,6 @@ jobs:
       flutter_channel: stable
       flutter_version: 2.10.0
 
-
   pana:
     runs-on: ubuntu-latest
     steps:
