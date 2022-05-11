@@ -45,12 +45,21 @@ void main() {
         expect(() => testBehavior.add(Component()), returnsNormally);
       });
 
-      flameTester.test('can have its own children', (game) async {
+      flameTester.test('can not have behaviors as children', (game) async {
         await game.ensureAdd(testEntity);
 
         expect(
           () => testBehavior.add(TestBehavior()),
           failsAssert('Behaviors cannot have behaviors.'),
+        );
+      });
+
+      flameTester.test('can not have entities as children', (game) async {
+        await game.ensureAdd(testEntity);
+
+        expect(
+          () => testBehavior.add(TestEntity()),
+          failsAssert('Behaviors cannot have entities.'),
         );
       });
     });

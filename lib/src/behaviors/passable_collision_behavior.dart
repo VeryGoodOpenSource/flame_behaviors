@@ -18,12 +18,21 @@ abstract class CollisionBehavior<Collider extends Component,
 }
 
 /// {@template passable_collision_behavior}
-/// This behavior is used to handle collisions between entities. It will pass
+/// This behavior is used to handle collisions between entities and pass
 /// the collision through to any [CollisionBehavior]s that are attached to the
 /// entity.
 ///
 /// The [CollisionBehavior]s are filtered by the [CollisionBehavior.isValid]
-/// method.
+/// method by checking if the colliding entity is valid for the given behavior.
+///
+/// If you have an entity that does not require any [CollisionBehavior]s of its
+/// own, you can just add the hitbox directly to the entity's children.
+/// Any other entity that has a [CollisionBehavior] for that entity attached
+/// will then be able to collide with it.
+///
+/// **Note**: This behavior can only be used for collisions between entities.
+/// It cannot be used for collisions between an entity and a non-entity
+/// component.
 /// {@endtemplate}
 class PassableCollisionBehavior extends Behavior with CollisionCallbacks {
   /// {@macro passable_collision_behavior}

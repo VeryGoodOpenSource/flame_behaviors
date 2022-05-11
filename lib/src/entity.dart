@@ -2,7 +2,12 @@ import 'package:flame/components.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 
 /// {@template entity}
-/// A component that represents an entity.
+/// The entity is the building block of a game. It represents a visual game
+/// object that can hold multiple [Behavior]s which in turn define how the
+/// entity behaves.
+///
+/// The visualization of the entity is defined by the [Component]s that are
+/// attached to it.
 /// {@endtemplate}
 abstract class Entity extends PositionComponent {
   /// {@macro entity}
@@ -31,8 +36,6 @@ abstract class Entity extends PositionComponent {
   }
 
   final Iterable<Component> _behaviors;
-
-  // TODO(wolfen): ready method
 
   /// Returns a list of behaviors with the given type, that are attached to
   /// this entity.
