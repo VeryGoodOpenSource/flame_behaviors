@@ -3,11 +3,13 @@ import 'package:flame/components.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 
 /// {@template collision_behavior}
-/// A collision behavior that can be attached to an entity.
+/// This behavior is used for collision between entities. The
+/// [PassableCollisionBehavior] passes the collision to this behavior if the
+/// entity that is colliding with the [Parent] is an instance of [Collider].
 /// {@endtemplate}
 abstract class CollisionBehavior<Collider extends Component,
     Parent extends Entity> extends Behavior<Parent> {
-  /// Check if the given component is the Collider.
+  /// Check if the given component is an instance of [Collider].
   bool isValid(Component c) => c is Collider;
 
   /// Called when the entity collides with [Collider].
@@ -23,7 +25,13 @@ abstract class CollisionBehavior<Collider extends Component,
 /// entity.
 ///
 /// The [CollisionBehavior]s are filtered by the [CollisionBehavior.isValid]
-/// method by checking if the colliding entity is valid for the given behavior.
+/// method by checking if the colliding entity is valid for the given behavior
+/// and if the colliding entity is valid the [CollisionBehavior.onCollision] is
+/// called.
+///
+/// This allows for strongly typed collision detection. Without having to add
+/// multiple collision behaviors for different types of entities or adding more
+/// logic to a single collision detection behavior.
 ///
 /// If you have an entity that does not require any [CollisionBehavior]s of its
 /// own, you can just add the hitbox directly to the entity's children.
