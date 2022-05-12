@@ -25,7 +25,7 @@ flutter pub add flame_behaviors
 ```
 
 
-## Usage
+## Usage ✨
 
 TBD
 
