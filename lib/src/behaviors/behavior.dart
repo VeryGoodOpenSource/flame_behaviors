@@ -6,7 +6,7 @@ import 'package:flame_behaviors/flame_behaviors.dart';
 /// attached to an [Entity] and handle a specific behavior for that entity.
 ///
 /// A behavior can have it's own [Component]s for adding extra functionality
-/// related to the behavior. It can, however, not have it's own [Behavior]s.
+/// related to the behavior. It cannot, however, have its own [Behavior]s.
 /// {@endtemplate}
 abstract class Behavior<Parent extends Entity> extends Component
     with ParentIsA<Parent> {
