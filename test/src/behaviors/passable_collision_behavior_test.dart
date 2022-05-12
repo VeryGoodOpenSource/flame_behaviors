@@ -50,7 +50,7 @@ void main() {
 
   group('PassableCollisionBehavior', () {
     flameTester.test('can be added to an Entity', (game) async {
-      final passableCollisionBehavior = PassableCollisionBehavior(
+      final passableCollisionBehavior = PropagatingCollisionBehavior(
         RectangleHitbox(),
       );
       final entityA = _EntityA(
@@ -60,7 +60,7 @@ void main() {
       await game.ensureAdd(entityA);
 
       expect(
-        entityA.findBehavior<PassableCollisionBehavior>(),
+        entityA.findBehavior<PropagatingCollisionBehavior>(),
         equals(passableCollisionBehavior),
       );
       expect(
@@ -75,14 +75,14 @@ void main() {
         final collisionBehaviorAtoC = _CollisionBehaviorAtoC();
         final entityA = _EntityA(
           behaviors: [
-            PassableCollisionBehavior(RectangleHitbox()),
+            PropagatingCollisionBehavior(RectangleHitbox()),
             collisionBehaviorAtoB,
             collisionBehaviorAtoC
           ],
         );
 
         final entityB = _EntityB(
-          behaviors: [PassableCollisionBehavior(RectangleHitbox())],
+          behaviors: [PropagatingCollisionBehavior(RectangleHitbox())],
         );
 
         await game.ensureAdd(entityA);
@@ -99,7 +99,7 @@ void main() {
         final collisionBehaviorAtoC = _CollisionBehaviorAtoC();
         final entityA = _EntityA(
           behaviors: [
-            PassableCollisionBehavior(RectangleHitbox()),
+            PropagatingCollisionBehavior(RectangleHitbox()),
             collisionBehaviorAtoB,
             collisionBehaviorAtoC
           ],

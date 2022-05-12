@@ -4,8 +4,8 @@ import 'package:flame_behaviors/flame_behaviors.dart';
 
 /// {@template collision_behavior}
 /// This behavior is used for collision between entities. The
-/// [PassableCollisionBehavior] passes the collision to this behavior if the
-/// entity that is colliding with the [Parent] is an instance of [Collider].
+/// [PropagatingCollisionBehavior] propagates the collision to this behavior if
+/// the entity that is colliding with the [Parent] is an instance of [Collider].
 /// {@endtemplate}
 abstract class CollisionBehavior<Collider extends Component,
     Parent extends Entity> extends Behavior<Parent> {
@@ -19,8 +19,8 @@ abstract class CollisionBehavior<Collider extends Component,
   );
 }
 
-/// {@template passable_collision_behavior}
-/// This behavior is used to handle collisions between entities and pass
+/// {@template propagating_collision_behavior}
+/// This behavior is used to handle collisions between entities and propagates
 /// the collision through to any [CollisionBehavior]s that are attached to the
 /// entity.
 ///
@@ -42,9 +42,9 @@ abstract class CollisionBehavior<Collider extends Component,
 /// It cannot be used for collisions between an entity and a non-entity
 /// component.
 /// {@endtemplate}
-class PassableCollisionBehavior extends Behavior with CollisionCallbacks {
-  /// {@macro passable_collision_behavior}
-  PassableCollisionBehavior(this._hitbox) : super(children: [_hitbox]);
+class PropagatingCollisionBehavior extends Behavior with CollisionCallbacks {
+  /// {@macro propagating_collision_behavior}
+  PropagatingCollisionBehavior(this._hitbox) : super(children: [_hitbox]);
 
   final RectangleHitbox _hitbox;
 
@@ -52,24 +52,24 @@ class PassableCollisionBehavior extends Behavior with CollisionCallbacks {
   Future<void> onLoad() async {
     _hitbox.onCollisionCallback = onCollision;
     parent.children.register<CollisionBehavior>();
-    _passToBehaviors = parent.children.query<CollisionBehavior>();
+    _propagateToBehaviors = parent.children.query<CollisionBehavior>();
   }
 
-  /// List of [CollisionBehavior]s to which it can pass to.
-  List<CollisionBehavior> _passToBehaviors = [];
+  /// List of [CollisionBehavior]s to which it can propagate to.
+  List<CollisionBehavior> _propagateToBehaviors = [];
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     final parent = other.parent;
-    if (parent is! PassableCollisionBehavior && parent is! Entity) {
+    if (parent is! PropagatingCollisionBehavior && parent is! Entity) {
       return super.onCollision(intersectionPoints, other);
     }
 
     final otherEntity = parent is Entity
         ? parent
-        : (parent as PassableCollisionBehavior?)!.parent;
+        : (parent as PropagatingCollisionBehavior?)!.parent;
 
-    for (final behavior in _passToBehaviors) {
+    for (final behavior in _propagateToBehaviors) {
       if (behavior.isValid(otherEntity)) {
         behavior.onCollision(intersectionPoints, otherEntity);
       }
