@@ -18,7 +18,7 @@ Behavioral composition pattern for Flame.
 
 ---
 
-## Installation
+## Installation 💻
 
 ```
 flutter pub add flame_behaviors
