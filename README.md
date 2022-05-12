@@ -7,7 +7,6 @@ Developed with 💙 by [Very Good Ventures][very_good_ventures_link] 🦄
 
 [![ci][ci_badge]][ci_link]
 [![coverage][coverage_badge]][ci_link]
-![coverage][coverage_badge]
 [![pub package][pub_badge]][pub_link]
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
@@ -19,23 +18,17 @@ Behavioral composition pattern for Flame.
 
 ---
 
-## Running Tests 🧪
+## Installation 💻
 
-To run all unit and widget tests use the following command:
-
-```sh
-$ flutter test --coverage --test-randomize-ordering-seed random
+```
+flutter pub add flame_behaviors
 ```
 
-To view the generated coverage report you can use [lcov](https://github.com/linux-test-project/lcov).
 
-```sh
-# Generate Coverage Report
-$ genhtml coverage/lcov.info -o coverage/
+## Usage ✨
 
-# Open Coverage Report
-$ open coverage/index.html
-```
+TBD
+
 
 [ci_badge]: https://github.com/VeryGoodOpenSource/flame_behaviors/workflows/flame_behaviors/badge.svg
 [ci_link]: https://github.com/VeryGoodOpenSource/flame_behaviors/actions
@@ -51,5 +44,5 @@ $ open coverage/index.html
 [very_good_ventures_link]: https://verygood.ventures/?utm_source=github&utm_medium=banner&utm_campaign=CLI
 [very_good_ventures_link_dark]: https://verygood.ventures/?utm_source=github&utm_medium=banner&utm_campaign=CLI#gh-dark-mode-only
 [very_good_ventures_link_light]: https://verygood.ventures/?utm_source=github&utm_medium=banner&utm_campaign=CLI#gh-light-mode-only
-[flame_badge_link]: https://img.shields.io/badge/Powered%20by-%F0%9F%94%A5-orange.svg)
+[flame_badge_link]: https://img.shields.io/badge/Powered%20by-%F0%9F%94%A5-orange.svg
 [flame_link]: https://flame-engine.org
