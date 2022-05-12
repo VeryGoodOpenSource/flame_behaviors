@@ -60,10 +60,10 @@ class PassableCollisionBehavior extends Behavior with CollisionCallbacks {
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other.parent is! PassableCollisionBehavior && other.parent is! Entity) {
+    final parent = other.parent;
+    if (parent is! PassableCollisionBehavior && parent is! Entity) {
       return super.onCollision(intersectionPoints, other);
     }
-    final parent = other.parent;
 
     final otherEntity = parent is Entity
         ? parent
