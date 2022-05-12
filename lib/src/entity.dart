@@ -35,7 +35,7 @@ abstract class Entity extends PositionComponent {
     addAll(_behaviors);
   }
 
-  final Iterable<Component> _behaviors;
+  final Iterable<Behavior> _behaviors;
 
   /// Returns a list of behaviors with the given type, that are attached to
   /// this entity.
