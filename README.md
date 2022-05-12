@@ -1,4 +1,4 @@
-# Flame Behaviors 
+# Flame Behaviors
 
 [![Very Good Ventures][logo_white]][very_good_ventures_link_dark]
 [![Very Good Ventures][logo_black]][very_good_ventures_link_light]
