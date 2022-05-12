@@ -1,6 +1,7 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
+import 'package:flutter/material.dart';
 
 /// {@template collision_behavior}
 /// This behavior is used for collision between entities. The
@@ -59,6 +60,7 @@ class PropagatingCollisionBehavior extends Behavior with CollisionCallbacks {
   List<CollisionBehavior> _propagateToBehaviors = [];
 
   @override
+  @mustCallSuper
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     final parent = other.parent;
     if (parent is! PropagatingCollisionBehavior && parent is! Entity) {
