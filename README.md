@@ -14,7 +14,7 @@ Developed with 💙 by [Very Good Ventures][very_good_ventures_link] 🦄
 
 ---
 
-Behavioral composition pattern for Flame.
+An implementation of the behavioral composition pattern for Flame.
 
 ---
 
@@ -24,11 +24,39 @@ Behavioral composition pattern for Flame.
 flutter pub add flame_behaviors
 ```
 
-
 ## Usage ✨
 
-TBD
+### Behavior
 
+A behavior is a component that defines how an entity behaves. It can be attached to an `Entity` and handle a specific behavior for that entity.
+
+A behavior can have it's own `Component`s for adding extra functionality related to the behavior. It cannot, however, have its own `Behavior`s.
+
+```dart
+// Define a custom behavior by extending `Behavior`.
+class CollisionBehavior extends Behavior with CollisionCallbacks {
+  CollisionBehavior(this._hitbox) : super(children: [_hitbox]);
+
+  final RectangleHitbox _hitbox;
+
+  @override
+  Future<void> onLoad() async {...}
+
+  @override
+  @mustCallSuper
+  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {...}
+```
+
+### Entity
+
+The entity is the building block of a game. It represents a visual game object that can hold multiple `Behavior`s which in turn define how the entity behaves.
+
+```dart
+// Define a custom entity by extending `Entity`.
+class MyEntity extends Entity {
+  MyEntity() : super(behaviors: [CollisionBehavior(RectangleHitbox()]);
+}
+```
 
 [ci_badge]: https://github.com/VeryGoodOpenSource/flame_behaviors/workflows/flame_behaviors/badge.svg
 [ci_link]: https://github.com/VeryGoodOpenSource/flame_behaviors/actions
