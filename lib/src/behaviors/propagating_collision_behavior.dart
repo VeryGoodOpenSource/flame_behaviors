@@ -14,16 +14,10 @@ abstract class CollisionBehavior<Collider extends Component,
   bool isValid(Component c) => c is Collider;
 
   /// Called when the entity collides with [Collider].
-  void onCollision(
-    Set<Vector2> intersectionPoints,
-    Collider other,
-  ) {}
+  void onCollision(Set<Vector2> intersectionPoints, Collider other) {}
 
   /// Called when the entity starts to collides with [Collider].
-  void onCollisionStart(
-    Set<Vector2> intersectionPoints,
-    Collider other,
-  ) {}
+  void onCollisionStart(Set<Vector2> intersectionPoints, Collider other) {}
 
   /// Called when the entity stops to collides with [Collider].
   void onCollisionEnd(Collider other) {}
@@ -95,22 +89,6 @@ class PropagatingCollisionBehavior extends Behavior with CollisionCallbacks {
   }
 
   @override
-  @mustCallSuper
-  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    final otherEntity = _findEntity(other);
-    if (otherEntity == null) {
-      return super.onCollision(intersectionPoints, other);
-    }
-
-    for (final behavior in _propagateToBehaviors) {
-      if (behavior.isValid(otherEntity)) {
-        behavior.onCollision(intersectionPoints, otherEntity);
-      }
-    }
-    super.onCollision(intersectionPoints, other);
-  }
-
-  @override
   void onCollisionStart(
     Set<Vector2> intersectionPoints,
     PositionComponent other,
@@ -127,6 +105,22 @@ class PropagatingCollisionBehavior extends Behavior with CollisionCallbacks {
       }
     }
     return super.onCollisionStart(intersectionPoints, other);
+  }
+
+  @override
+  @mustCallSuper
+  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+    final otherEntity = _findEntity(other);
+    if (otherEntity == null) {
+      return super.onCollision(intersectionPoints, other);
+    }
+
+    for (final behavior in _propagateToBehaviors) {
+      if (behavior.isValid(otherEntity)) {
+        behavior.onCollision(intersectionPoints, otherEntity);
+      }
+    }
+    super.onCollision(intersectionPoints, other);
   }
 
   @override
