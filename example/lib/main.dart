@@ -12,15 +12,15 @@ class ExampleGame extends FlameGame with HasCollisionDetection, HasDraggables {
     await add(FpsTextComponent(position: Vector2.zero()));
     await add(ScreenHitbox());
 
-    var lastToAdd = _randomEntity(
+    var shapeEntity = _randomEntity(
       position: Vector2.zero(),
       size: Vector2.all(50) + Vector2.random(_rng) * 100,
     );
-    await add(lastToAdd);
+    await add(shapeEntity);
 
     for (var i = 0; i < 50; i++) {
-      lastToAdd = nextRandomEntity(lastToAdd);
-      await add(lastToAdd);
+      shapeEntity = nextRandomEntity(shapeEntity);
+      await add(shapeEntity);
     }
   }
 
