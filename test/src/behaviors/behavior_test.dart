@@ -7,34 +7,45 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../../helpers/test_game.dart';
 
-class TestEntity extends Entity {
-  TestEntity({Iterable<Behavior>? behaviors}) : super(behaviors: behaviors);
+class _TestEntity extends Entity {
+  _TestEntity({Iterable<Behavior>? behaviors})
+      : super(behaviors: behaviors, size: Vector2.all(32));
 }
 
-class TestBehavior extends Behavior<TestEntity> {}
+class _TestBehavior extends Behavior<_TestEntity> {}
 
 void main() {
   final flameTester = FlameTester(TestGame.new);
 
   group('Behavior', () {
     flameTester.test('can be added to an Entity', (game) async {
-      final testBehavior = TestBehavior();
-      final testEntity = TestEntity(
+      final testBehavior = _TestBehavior();
+      final testEntity = _TestEntity(
         behaviors: [testBehavior],
       );
 
       await game.ensureAdd(testEntity);
-      expect(game.descendants().whereType<TestBehavior>().length, equals(1));
+      expect(game.descendants().whereType<_TestBehavior>().length, equals(1));
       expect(testEntity.children.contains(testBehavior), isTrue);
     });
 
+    flameTester.test('contains point is relative to parent', (game) async {
+      final behavior = _TestBehavior();
+      final entity = _TestEntity(behaviors: [behavior]);
+      await game.ensureAdd(entity);
+
+      expect(behavior.containsPoint(Vector2.zero()), isTrue);
+      expect(behavior.containsPoint(Vector2(31, 31)), isTrue);
+      expect(behavior.containsPoint(Vector2(32, 32)), isFalse);
+    });
+
     group('children', () {
-      late TestBehavior testBehavior;
-      late TestEntity testEntity;
+      late _TestBehavior testBehavior;
+      late _TestEntity testEntity;
 
       setUp(() {
-        testBehavior = TestBehavior();
-        testEntity = TestEntity(
+        testBehavior = _TestBehavior();
+        testEntity = _TestEntity(
           behaviors: [testBehavior],
         );
       });
@@ -49,7 +60,7 @@ void main() {
         await game.ensureAdd(testEntity);
 
         expect(
-          () => testBehavior.add(TestBehavior()),
+          () => testBehavior.add(_TestBehavior()),
           failsAssert('Behaviors cannot have behaviors.'),
         );
       });
@@ -58,7 +69,7 @@ void main() {
         await game.ensureAdd(testEntity);
 
         expect(
-          () => testBehavior.add(TestEntity()),
+          () => testBehavior.add(_TestEntity()),
           failsAssert('Behaviors cannot have entities.'),
         );
       });

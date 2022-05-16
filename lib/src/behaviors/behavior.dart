@@ -21,4 +21,9 @@ abstract class Behavior<Parent extends Entity> extends Component
     assert(component is! Behavior, 'Behaviors cannot have behaviors.');
     return super.add(component);
   }
+
+  @override
+  bool containsPoint(Vector2 point) {
+    return parent.containsPoint(point);
+  }
 }

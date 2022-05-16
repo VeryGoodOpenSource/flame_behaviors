@@ -6,7 +6,8 @@ import 'package:flame/game.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 import 'package:flutter/material.dart';
 
-class ExampleGame extends FlameGame with HasCollisionDetection, HasDraggables {
+class ExampleGame extends FlameGame
+    with HasCollisionDetection, HasDraggables, HasTappables {
   @override
   Future<void> onLoad() async {
     await add(FpsTextComponent(position: Vector2.zero()));
