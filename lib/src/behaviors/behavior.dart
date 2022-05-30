@@ -26,4 +26,7 @@ abstract class Behavior<Parent extends Entity> extends Component
   bool containsPoint(Vector2 point) {
     return parent.containsPoint(point);
   }
+
+  @override
+  bool get debugMode => parent.debugMode;
 }
