@@ -20,8 +20,7 @@ abstract class Entity extends PositionComponent {
     Iterable<Component>? children,
     int? priority,
     Iterable<Behavior>? behaviors,
-  })  : _behaviors = behaviors ?? <Behavior>[],
-        assert(
+  })  : assert(
           children?.whereType<Behavior>().isEmpty ?? true,
           'Behaviors cannot be added to as a child directly.',
         ),
@@ -34,10 +33,20 @@ abstract class Entity extends PositionComponent {
           children: children,
           priority: priority,
         ) {
-    addAll(_behaviors);
+    if (behaviors != null) {
+      addAll(behaviors);
+    }
   }
 
-  final Iterable<Behavior> _behaviors;
+  late final List<Behavior> _behaviors;
+
+  @override
+  Future<void>? onLoad() {
+    children.register<Behavior>();
+    _behaviors = children.query<Behavior>();
+
+    return super.onLoad();
+  }
 
   /// Returns a list of behaviors with the given type, that are attached to
   /// this entity.

@@ -24,5 +24,23 @@ void main() {
 
       expect(entity.children.contains(behavior), isTrue);
     });
+
+    flameTester.test(
+      'behavior can be removed from entity and the internal cache',
+      (game) async {
+        final behavior = TestBehavior();
+        final entity = TestEntity(behaviors: []);
+
+        await game.ensureAdd(entity);
+
+        expect(entity.findBehavior<TestBehavior>(), isNull);
+        await entity.ensureAdd(behavior);
+        expect(entity.findBehavior<TestBehavior>(), isNotNull);
+
+        behavior.shouldRemove = true;
+        game.update(0);
+        expect(entity.findBehavior<TestBehavior>(), isNull);
+      },
+    );
   });
 }
