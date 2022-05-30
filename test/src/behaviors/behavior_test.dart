@@ -39,6 +39,16 @@ void main() {
       expect(behavior.containsPoint(Vector2(32, 32)), isFalse);
     });
 
+    flameTester.test('debugMode is provided by the parent', (game) async {
+      final behavior = _TestBehavior();
+      final entity = _TestEntity(behaviors: [behavior]);
+      await game.ensureAdd(entity);
+
+      expect(behavior.debugMode, isFalse);
+      entity.debugMode = true;
+      expect(behavior.debugMode, isTrue);
+    });
+
     group('children', () {
       late _TestBehavior testBehavior;
       late _TestEntity testEntity;
