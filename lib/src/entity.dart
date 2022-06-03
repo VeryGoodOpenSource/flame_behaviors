@@ -1,5 +1,7 @@
 import 'package:flame/components.dart';
+import 'package:flame/game.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
+import 'package:flutter/material.dart';
 
 /// {@template entity}
 /// The entity is the building block of a game. It represents a visual game
@@ -33,12 +35,12 @@ abstract class Entity extends PositionComponent {
           children: children,
           priority: priority,
         ) {
-    if (behaviors != null) {
-      addAll(behaviors);
-    }
-
     this.children.register<Behavior>();
     _behaviors = this.children.query<Behavior>();
+
+    if (behaviors != null) {
+      Future.wait<void>(behaviors.map(addBehavior).whereType<Future<void>>());
+    }
   }
 
   late final List<Behavior> _behaviors;
@@ -59,5 +61,35 @@ abstract class Entity extends PositionComponent {
   /// Checks if this entity has a behavior with the given type.
   bool hasBehavior<T extends Behavior>() {
     return findBehavior<T>() != null;
+  }
+
+  /// Adds the given [behavior] to this entity only if the entity does not yet
+  /// have the behavior.
+  Future<void>? addBehavior<T extends Behavior>(T behavior) {
+    assert(
+      !hasBehavior<T>(),
+      'The entity already has a behavior of the type $T',
+    );
+    return super.add(behavior);
+  }
+
+  @override
+  Future<void>? add(Component component) {
+    assert(
+      component is! Behavior,
+      'Use the addBehavior method to add a behavior',
+    );
+    return super.add(component);
+  }
+}
+
+/// Add testing methods for entities.
+@visibleForTesting
+extension EntityTest on Entity {
+  /// Makes sure that the [behavior] is added to the tree if you wait for the
+  /// returned future to resolve.
+  Future<void> ensureAddBehavior<T extends Behavior>(T behavior) async {
+    await addBehavior(behavior);
+    await (behavior.findGame()! as FlameGame).ready();
   }
 }
