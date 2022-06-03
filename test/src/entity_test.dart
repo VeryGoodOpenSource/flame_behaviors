@@ -42,5 +42,23 @@ void main() {
         expect(entity.findBehavior<TestBehavior>(), isNull);
       },
     );
+
+    flameTester.test(
+      'can correctly confirm if it has a behavior',
+      (game) async {
+        final behavior = TestBehavior();
+        final entity = TestEntity(behaviors: []);
+
+        await game.ensureAdd(entity);
+
+        expect(entity.hasBehavior<TestBehavior>(), isFalse);
+        await entity.ensureAdd(behavior);
+        expect(entity.hasBehavior<TestBehavior>(), isTrue);
+
+        behavior.shouldRemove = true;
+        game.update(0);
+        expect(entity.hasBehavior<TestBehavior>(), isFalse);
+      },
+    );
   });
 }
