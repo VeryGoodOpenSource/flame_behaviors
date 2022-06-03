@@ -36,17 +36,12 @@ abstract class Entity extends PositionComponent {
     if (behaviors != null) {
       addAll(behaviors);
     }
+
+    this.children.register<Behavior>();
+    _behaviors = this.children.query<Behavior>();
   }
 
   late final List<Behavior> _behaviors;
-
-  @override
-  Future<void>? onLoad() {
-    children.register<Behavior>();
-    _behaviors = children.query<Behavior>();
-
-    return super.onLoad();
-  }
 
   /// Returns a list of behaviors with the given type, that are attached to
   /// this entity.
@@ -59,5 +54,10 @@ abstract class Entity extends PositionComponent {
   T? findBehavior<T extends Behavior>() {
     final it = findBehaviors<T>().iterator;
     return it.moveNext() ? it.current : null;
+  }
+
+  /// Checks if this entity has a behavior with the given type.
+  bool hasBehavior<T extends Behavior>() {
+    return findBehavior<T>() != null;
   }
 }
