@@ -53,7 +53,7 @@ void main() {
         final entity = TestEntity();
 
         await game.ensureAdd(entity);
-        await entity.ensureAddBehavior(behavior1);
+        await entity.addBehavior(behavior1);
 
         await expectLater(
           () => entity.addBehavior(behavior2),
@@ -76,7 +76,7 @@ void main() {
         await game.ensureAdd(entity);
 
         expect(entity.findBehavior<TestBehavior>(), isNull);
-        await entity.ensureAddBehavior(behavior);
+        await entity.addBehavior(behavior);
         expect(entity.findBehavior<TestBehavior>(), isNotNull);
 
         behavior.shouldRemove = true;
@@ -94,7 +94,7 @@ void main() {
         await game.ensureAdd(entity);
 
         expect(entity.hasBehavior<TestBehavior>(), isFalse);
-        await entity.ensureAddBehavior(behavior);
+        await entity.addBehavior(behavior);
         expect(entity.hasBehavior<TestBehavior>(), isTrue);
 
         behavior.shouldRemove = true;
