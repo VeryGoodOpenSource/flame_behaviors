@@ -8,8 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../helpers/test_game.dart';
 
 class _TestEntity extends Entity {
-  _TestEntity({Iterable<Behavior>? behaviors})
-      : super(behaviors: behaviors, size: Vector2.all(32));
+  _TestEntity({super.behaviors}) : super(size: Vector2.all(32));
 }
 
 class _TestBehavior extends Behavior<_TestEntity> {}
