@@ -114,7 +114,7 @@ collision callbacks on the entities themselves the collision detection system do
 go through any "collidable" behaviors, for which there could be many per entity. We only do that now
 if we confirm a collision has happened. The second benefit is [separation-of-concerns](https://en.wikipedia.org/wiki/Separation_of_concerns).
 Each `CollisionBehavior` handles a specific collision use-case and ensures the developer does not
-have to write a bunch of if statement in one big method to figure out what it is colliding with.
+have to write a bunch of if statements in one big method to figure out what it is colliding with.
 
 A good use case of this can be seen in the `flame_behaviors` [example](https://github.com/VeryGoodOpenSource/flame_behaviors/tree/main/example)
 
