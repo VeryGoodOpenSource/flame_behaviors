@@ -7,7 +7,9 @@ import 'package:flutter_test/flutter_test.dart';
 import '../helpers/helpers.dart';
 
 class TestEntity extends Entity {
-  TestEntity({Iterable<Behavior>? behaviors}) : super(behaviors: behaviors);
+  TestEntity({
+    super.behaviors,
+  });
 }
 
 class TestBehavior extends Behavior<TestEntity> {}
@@ -37,7 +39,7 @@ void main() {
         await entity.ensureAdd(behavior);
         expect(entity.findBehavior<TestBehavior>(), isNotNull);
 
-        behavior.shouldRemove = true;
+        behavior.removeFromParent();
         game.update(0);
         expect(entity.findBehavior<TestBehavior>(), isNull);
       },
@@ -55,7 +57,7 @@ void main() {
         await entity.ensureAdd(behavior);
         expect(entity.hasBehavior<TestBehavior>(), isTrue);
 
-        behavior.shouldRemove = true;
+        behavior.removeFromParent();
         game.update(0);
         expect(entity.hasBehavior<TestBehavior>(), isFalse);
       },
