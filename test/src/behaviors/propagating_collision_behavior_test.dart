@@ -76,7 +76,6 @@ void main() {
 
         await game.ensureAdd(entityA);
         await game.ensureAdd(entityB);
-
         game.update(0);
 
         expect(collisionBehaviorAtoB.isColliding, isTrue);

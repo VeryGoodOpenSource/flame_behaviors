@@ -9,7 +9,7 @@ import 'package:flame_behaviors/flame_behaviors.dart';
 /// The visualization of the entity is defined by the [Component]s that are
 /// attached to it.
 /// {@endtemplate}
-abstract class Entity extends PositionComponent {
+abstract class Entity extends PositionComponent with HasGameRef {
   /// {@macro entity}
   Entity({
     super.position,
@@ -24,15 +24,13 @@ abstract class Entity extends PositionComponent {
           children?.whereType<Behavior>().isEmpty ?? true,
           'Behaviors cannot be added to as a child directly.',
         ) {
-    children.register<Behavior>();
-    _behaviors = children.query<Behavior>();
-
     if (behaviors != null) {
+      // TODO: broken, does not have correct generics
       Future.wait<void>(behaviors.map(addBehavior));
     }
   }
 
-  late final List<Behavior> _behaviors;
+  final List<Behavior> _behaviors = [];
 
   /// Returns a list of behaviors with the given type, that are attached to
   /// this entity.
@@ -59,6 +57,7 @@ abstract class Entity extends PositionComponent {
       !hasBehavior<T>(),
       'The entity already has a behavior of the type $T',
     );
+    _behaviors.add(behavior);
     return await super.add(behavior);
   }
 
@@ -69,5 +68,13 @@ abstract class Entity extends PositionComponent {
       'Use the addBehavior method to add a behavior',
     );
     return super.add(component);
+  }
+
+  @override
+  void remove(Component component) {
+    if (component is Behavior) {
+      _behaviors.remove(component);
+    }
+    return super.remove(component);
   }
 }

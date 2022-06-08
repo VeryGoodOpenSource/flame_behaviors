@@ -56,6 +56,7 @@ void main() {
 
         await game.ensureAdd(entity);
         await entity.addBehavior(behavior1);
+        await game.ready();
 
         await expectLater(
           () => entity.addBehavior(behavior2),
@@ -82,7 +83,6 @@ void main() {
         expect(entity.findBehavior<TestBehavior>(), isNotNull);
 
         behavior.removeFromParent();
-        game.update(0);
         expect(entity.findBehavior<TestBehavior>(), isNull);
       },
     );
@@ -100,7 +100,6 @@ void main() {
         expect(entity.hasBehavior<TestBehavior>(), isTrue);
 
         behavior.removeFromParent();
-        game.update(0);
         expect(entity.hasBehavior<TestBehavior>(), isFalse);
       },
     );
