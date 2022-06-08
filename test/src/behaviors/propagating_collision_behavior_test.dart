@@ -10,21 +10,20 @@ import '../../helpers/helpers.dart';
 
 class _EntityA extends Entity {
   _EntityA({
-    Iterable<Behavior>? behaviors,
-  }) : super(size: Vector2.all(16), behaviors: behaviors);
+    super.behaviors,
+  }) : super(size: Vector2.all(16));
 }
 
 class _EntityB extends Entity {
   _EntityB({
-    Iterable<Behavior>? behaviors,
-  }) : super(size: Vector2.all(16), behaviors: behaviors);
+    super.behaviors,
+  }) : super(size: Vector2.all(16));
 }
 
 class _EntityC extends Entity {
   _EntityC({
-    Iterable<Behavior>? behaviors,
-    Iterable<Component>? children,
-  }) : super(size: Vector2.all(16), behaviors: behaviors, children: children);
+    super.children,
+  }) : super(size: Vector2.all(16));
 }
 
 abstract class _CollisionBehavior<A extends Entity, B extends Entity>

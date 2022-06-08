@@ -12,8 +12,8 @@ abstract class Behavior<Parent extends Entity> extends Component
     with ParentIsA<Parent> {
   /// {@macro behavior}
   Behavior({
-    Iterable<Component>? children,
-  }) : super(children: children);
+    super.children,
+  });
 
   @override
   Future<void>? add(Component component) {
