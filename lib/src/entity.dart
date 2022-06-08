@@ -24,57 +24,42 @@ abstract class Entity extends PositionComponent with HasGameRef {
           children?.whereType<Behavior>().isEmpty ?? true,
           'Behaviors cannot be added to as a child directly.',
         ) {
+    children.register<Behavior>();
+    _behaviors = children.query<Behavior>();
+
     if (behaviors != null) {
-      // TODO: broken, does not have correct generics
-      Future.wait<void>(behaviors.map(addBehavior));
+      addAll(behaviors);
     }
   }
 
-  final List<Behavior> _behaviors = [];
+  late final List<Behavior> _behaviors;
 
   /// Returns a list of behaviors with the given type, that are attached to
   /// this entity.
+  ///
+  /// This will only return behaviors that have a completed lifecycle, aka they
+  /// are fully mounted.
   Iterable<T> findBehaviors<T extends Behavior>() {
     return _behaviors.whereType<T>();
   }
 
-  /// Returns the first behavior with the given type, that is attached to this
-  /// entity.
+  /// Returns the first found behavior with the given type, that is attached
+  /// to this entity.
+  ///
+  /// This will only return a behavior that has a completed lifecycle, aka it
+  /// is fully mounted.
   T? findBehavior<T extends Behavior>() {
     final it = findBehaviors<T>().iterator;
+
+    // TODO: throw state error if not exist.
     return it.moveNext() ? it.current : null;
   }
 
-  /// Checks if this entity has a behavior with the given type.
+  /// Checks if this entity has at least one behavior with the given type.
+  ///
+  /// This will only return true if the behavior type has a completed
+  /// lifecycle, aka it is fully mounted.
   bool hasBehavior<T extends Behavior>() {
     return findBehavior<T>() != null;
-  }
-
-  /// Adds the given [behavior] to this entity only if the entity does not yet
-  /// have the behavior.
-  Future<void> addBehavior<T extends Behavior>(T behavior) async {
-    assert(
-      !hasBehavior<T>(),
-      'The entity already has a behavior of the type $T',
-    );
-    _behaviors.add(behavior);
-    return await super.add(behavior);
-  }
-
-  @override
-  Future<void>? add(Component component) {
-    assert(
-      component is! Behavior,
-      'Use the addBehavior method to add a behavior',
-    );
-    return super.add(component);
-  }
-
-  @override
-  void remove(Component component) {
-    if (component is Behavior) {
-      _behaviors.remove(component);
-    }
-    return super.remove(component);
   }
 }

@@ -18,16 +18,6 @@ void main() {
   final flameTester = FlameTester(TestGame.new);
 
   group('Entity', () {
-    flameTester.test('only non-behaviors can be added using add', (game) async {
-      final behavior = TestBehavior();
-      final entity = TestEntity();
-
-      await expectLater(
-        () => entity.add(behavior),
-        failsAssert('Use the addBehavior method to add a behavior'),
-      );
-    });
-
     flameTester.test('adds behaviors directly to itself', (game) async {
       final behavior = TestBehavior();
       final entity = TestEntity(behaviors: [behavior]);
@@ -41,34 +31,11 @@ void main() {
       final behavior = TestBehavior();
       final entity = TestEntity();
 
-      await entity.addBehavior(behavior);
+      await entity.ensureAdd(behavior);
       await game.ensureAdd(entity);
 
       expect(entity.children.contains(behavior), isTrue);
     });
-
-    flameTester.test(
-      'same type of behavior cant be added if it already has one',
-      (game) async {
-        final behavior1 = TestBehavior();
-        final behavior2 = TestBehavior();
-        final entity = TestEntity();
-
-        await game.ensureAdd(entity);
-        await entity.addBehavior(behavior1);
-        await game.ready();
-
-        await expectLater(
-          () => entity.addBehavior(behavior2),
-          failsAssert(
-            'The entity already has a behavior of the type TestBehavior',
-          ),
-        );
-
-        expect(entity.children.contains(behavior1), isTrue);
-        expect(entity.children.contains(behavior2), isFalse);
-      },
-    );
 
     flameTester.test(
       'behavior can be removed from entity and the internal cache',
@@ -79,10 +46,11 @@ void main() {
         await game.ensureAdd(entity);
 
         expect(entity.findBehavior<TestBehavior>(), isNull);
-        await entity.addBehavior(behavior);
+        await entity.ensureAdd(behavior);
         expect(entity.findBehavior<TestBehavior>(), isNotNull);
 
         behavior.removeFromParent();
+        await game.ready();
         expect(entity.findBehavior<TestBehavior>(), isNull);
       },
     );
@@ -96,10 +64,11 @@ void main() {
         await game.ensureAdd(entity);
 
         expect(entity.hasBehavior<TestBehavior>(), isFalse);
-        await entity.addBehavior(behavior);
+        await entity.ensureAdd(behavior);
         expect(entity.hasBehavior<TestBehavior>(), isTrue);
 
         behavior.removeFromParent();
+        await game.ready();
         expect(entity.hasBehavior<TestBehavior>(), isFalse);
       },
     );
