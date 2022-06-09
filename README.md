@@ -56,8 +56,8 @@ class MySpecificBehavior extends Behavior<MyEntity> {
 }
 ```
 
-Each behavior can have it's own `Component`s for adding extra functionality related to the 
-behavior. For instance a `TimerComponent` to have time based behavioral activity:
+Each behavior can have its own `Component`s for adding extra functionality related to the 
+behavior. For instance a `TimerComponent` can implement a time-based behavioral activity:
 
 ```dart
 class MyBehavior extends Behavior {
