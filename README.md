@@ -106,11 +106,11 @@ It does this by registering a hitbox on the parent entity and when that hitbox h
 of a any interested for any of the `CollisionBehavior` on the parent entity.
 
 This comes with two benefits, the first and most important one is performance. By only registering
-collision callbacks on the entities themselves the collision detection system does not have to 
+collision callbacks on the entities themselves, the collision detection system does not have to 
 go through any "collidable" behaviors, for which there could be many per entity. We only do that now
-if we confirm a collision has happened. The second benefit is [separation-of-concerns](https://en.wikipedia.org/wiki/Separation_of_concerns).
-Each `CollisionBehavior` handles a specific collision use-case and ensures the developer does not
-have to write a bunch of if statements in one big method to figure out what it is colliding with.
+if we confirm a collision has happened. 
+
+The second benefit is to implement the [separation-of-concerns](https://en.wikipedia.org/wiki/Separation_of_concerns). Each `CollisionBehavior` handles a specific collision use case and ensures the developer does not have to write a bunch of if statements in one big method to figure out what it is colliding with.
 
 A good use case of this can be seen in the `flame_behaviors` [example](https://github.com/VeryGoodOpenSource/flame_behaviors/tree/main/example)
 
