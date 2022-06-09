@@ -16,6 +16,9 @@ Developed with 💙 by [Very Good Ventures][very_good_ventures_link] 🦄
 
 An implementation of the behavioral composition pattern for Flame.
 
+TODO: explain why it exists and what the benefits are.
+TODO: Zoom out and explain some overal structure of a game and how entities/behaviors fit into that.
+
 ---
 
 ## Installation 💻
@@ -27,6 +30,7 @@ flutter pub add flame_behaviors
 ## Usage ✨
 
 ### Entity
+
 
 The entity is the building block of a game. It represents a visual game object that can hold 
 multiple `Behavior`s, which in turn define how the entity behaves.
@@ -72,7 +76,8 @@ class MyBehavior extends Behavior {
 }
 ```
 
-**Note**: A behavior, by definition, cannot have it's own `Behavior`s. 
+**Note**: A Behavior` is a non-visual component that describes how a visual component (Entity) 
+behaves. To ensure this relationship a behavior can't have its own `Behavior`s.
 
 #### Input behaviors
 
