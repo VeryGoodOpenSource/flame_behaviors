@@ -29,7 +29,7 @@ flutter pub add flame_behaviors
 ### Entity
 
 The entity is the building block of a game. It represents a visual game object that can hold 
-multiple `Behavior`s which in turn define how the entity behaves.
+multiple `Behavior`s, which in turn define how the entity behaves.
 
 ```dart
 // Define a custom entity by extending `Entity`.
@@ -97,9 +97,14 @@ information.
 
 ### Collision detection
 
-Flame comes with a powerful built-in [collision detection system](https://docs.flame-engine.org/1.2.0/flame/collision_detection.html), but this API is not strongly typed. Components always get the colliding component as a `PositionComponent` and developers need to manually check what type of class it is. 
+Flame comes with a powerful built-in [collision detection system](https://docs.flame-engine.org/1.2.0/flame/collision_detection.html), 
+but this API is not strongly typed. Components always get the colliding component as a 
+`PositionComponent` and developers need to manually check what type of class it is. 
 
-`flame_behaviors` is all about enforcing a strongly typed API. It provides a special behavior called `CollisionBehavior` that describes what type of entity it will target for collision. It does not, however, do any real collision detection. That is done by the `PropagatingCollisionBehavior`.
+`flame_behaviors` is all about enforcing a strongly typed API. It provides a special behavior 
+called `CollisionBehavior` that describes what type of entity it will target for collision. It 
+does not, however, do any real collision detection. That is done by the 
+`PropagatingCollisionBehavior`.
 
 It does this by registering a hitbox on the parent entity and when that hitbox has a collision the 
 `PropagatingCollisionBehavior` checks if the component that the parent entity is colliding with is 
@@ -107,10 +112,12 @@ of a any interested for any of the `CollisionBehavior` on the parent entity.
 
 This comes with two benefits, the first and most important one is performance. By only registering
 collision callbacks on the entities themselves, the collision detection system does not have to 
-go through any "collidable" behaviors, for which there could be many per entity. We only do that now
-if we confirm a collision has happened. 
+go through any "collidable" behaviors, for which there could be many per entity. We only do that 
+now if we confirm a collision has happened. 
 
-The second benefit is to implement the [separation-of-concerns](https://en.wikipedia.org/wiki/Separation_of_concerns). Each `CollisionBehavior` handles a specific collision use case and ensures the developer does not have to write a bunch of if statements in one big method to figure out what it is colliding with.
+The second benefit is to implement the [separation-of-concerns](https://en.wikipedia.org/wiki/Separation_of_concerns). 
+Each `CollisionBehavior` handles a specific collision use case and ensures the developer does not 
+have to write a bunch of if statements in one big method to figure out what it is colliding with.
 
 A good use case of this can be seen in the `flame_behaviors` [example](https://github.com/VeryGoodOpenSource/flame_behaviors/tree/main/example)
 

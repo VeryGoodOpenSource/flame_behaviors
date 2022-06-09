@@ -3,7 +3,7 @@ import 'package:flame_behaviors/flame_behaviors.dart';
 
 /// {@template entity}
 /// The entity is the building block of a game. It represents a visual game
-/// object that can hold multiple [Behavior]s which in turn define how the
+/// object that can hold multiple `Behavior`s, which in turn define how the
 /// entity behaves.
 ///
 /// The visualization of the entity is defined by the [Component]s that are
