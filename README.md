@@ -42,7 +42,7 @@ class MyEntity extends Entity {
 
 A behavior is a component that defines how an entity behaves. It can be attached to an `Entity` 
 and handle a specific behavior for that entity. Behaviors can either be generic for any entity 
-or you can specify the specific type of entity it requires:
+or you can specify the specific type of entity that a behavior requires:
 
 ```dart
 // Can be added to any type of Entity.
