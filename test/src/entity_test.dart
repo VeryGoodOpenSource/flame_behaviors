@@ -30,8 +30,8 @@ void main() {
     flameTester.test('adds behaviors to itself', (game) async {
       final behavior = TestBehavior();
       final entity = TestEntity();
+      await entity.add(behavior);
 
-      await entity.ensureAdd(behavior);
       await game.ensureAdd(entity);
 
       expect(entity.children.contains(behavior), isTrue);
