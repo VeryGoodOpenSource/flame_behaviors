@@ -111,9 +111,9 @@ called `CollisionBehavior` that describes what type of entity it will target for
 does not, however, do any real collision detection. That is done by the 
 `PropagatingCollisionBehavior`.
 
-It does this by registering a hitbox on the parent entity and when that hitbox has a collision the 
-`PropagatingCollisionBehavior` checks if the component that the parent entity is colliding with is 
-of a any interested for any of the `CollisionBehavior` on the parent entity.
+It does this by registering a hitbox on the parent entity. When that hitbox has a collision, the 
+`PropagatingCollisionBehavior` checks if the component that the parent entity is colliding with 
+contains the target entity type specified in `CollisionBehavior`.
 
 This comes with two benefits, the first and most important one is performance. By only registering
 collision callbacks on the entities themselves, the collision detection system does not have to 
