@@ -111,20 +111,24 @@ called `CollisionBehavior` that describes what type of entity it will target for
 does not, however, do any real collision detection. That is done by the 
 `PropagatingCollisionBehavior`.
 
-It does this by registering a hitbox on the parent entity. When that hitbox has a collision, the 
-`PropagatingCollisionBehavior` checks if the component that the parent entity is colliding with 
-contains the target entity type specified in `CollisionBehavior`.
+The `PropagatingCollisionBehavior` handles the collision detection by registering a hitbox on the 
+parent entity. When that hitbox has a collision, the `PropagatingCollisionBehavior` checks if the 
+component that the parent entity is colliding with contains the target entity type specified in 
+`CollisionBehavior`.
 
-This comes with two benefits, the first and most important one is performance. By only registering
-collision callbacks on the entities themselves, the collision detection system does not have to 
-go through any "collidable" behaviors, for which there could be many per entity. We only do that 
-now if we confirm a collision has happened. 
+By letting the `PropagatingCollisionBehavior` handle the collision detection we gain two benefits, 
+the first and most important one is performance. By only registering collision callbacks on the 
+entities themselves, the collision detection system does not have to go through any "collidable" 
+behaviors, for which there could be many per entity. We only do that now if we confirm a collision 
+has happened. 
 
-The second benefit is to implement the [separation-of-concerns](https://en.wikipedia.org/wiki/Separation_of_concerns). 
-Each `CollisionBehavior` handles a specific collision use case and ensures the developer does not 
-have to write a bunch of if statements in one big method to figure out what it is colliding with.
+The second benefit is that it allows for [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns). 
+Each `CollisionBehavior` handles a specific collision use case and ensures that the developer does 
+not have to write a bunch of if statements in one big method to figure out what it is colliding 
+with.
 
-A good use case of this can be seen in the `flame_behaviors` [example](https://github.com/VeryGoodOpenSource/flame_behaviors/tree/main/example)
+A good use case of this collisional behavior pattern can be seen in the `flame_behaviors` 
+[example](https://github.com/VeryGoodOpenSource/flame_behaviors/tree/main/example)
 
 ```dart
 class MyEntityCollisionBehavior extends CollisionBehavior<MyCollidingEntity, MyParentEntity> {
