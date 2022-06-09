@@ -9,7 +9,7 @@ import 'package:flame_behaviors/flame_behaviors.dart';
 /// The visualization of the entity is defined by the [Component]s that are
 /// attached to it.
 /// {@endtemplate}
-abstract class Entity extends PositionComponent with HasGameRef {
+abstract class Entity extends PositionComponent {
   /// {@macro entity}
   Entity({
     super.position,
