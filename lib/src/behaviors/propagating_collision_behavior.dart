@@ -25,7 +25,7 @@ abstract class CollisionBehavior<Collider extends Component,
   /// Whether the object is currently colliding with another [Collider] or not.
   bool get isColliding {
     final propagatingCollisionBehavior =
-        parent.findBehavior<PropagatingCollisionBehavior>()!;
+        parent.findBehavior<PropagatingCollisionBehavior>();
     final activeCollisions = propagatingCollisionBehavior.activeCollisions;
 
     return activeCollisions

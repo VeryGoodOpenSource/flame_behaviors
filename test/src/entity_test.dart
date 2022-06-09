@@ -18,9 +18,19 @@ void main() {
   final flameTester = FlameTester(TestGame.new);
 
   group('Entity', () {
-    flameTester.test('adds behaviors to itself', (game) async {
+    flameTester.test('adds behaviors directly to itself', (game) async {
       final behavior = TestBehavior();
       final entity = TestEntity(behaviors: [behavior]);
+
+      await game.ensureAdd(entity);
+
+      expect(entity.children.contains(behavior), isTrue);
+    });
+
+    flameTester.test('adds behaviors to itself', (game) async {
+      final behavior = TestBehavior();
+      final entity = TestEntity();
+      await entity.add(behavior);
 
       await game.ensureAdd(entity);
 
@@ -35,13 +45,19 @@ void main() {
 
         await game.ensureAdd(entity);
 
-        expect(entity.findBehavior<TestBehavior>(), isNull);
+        await expectLater(
+          entity.findBehavior<TestBehavior>,
+          throwsBehaviorNotFoundFor<TestBehavior>(),
+        );
         await entity.ensureAdd(behavior);
         expect(entity.findBehavior<TestBehavior>(), isNotNull);
 
         behavior.removeFromParent();
-        game.update(0);
-        expect(entity.findBehavior<TestBehavior>(), isNull);
+        await game.ready();
+        await expectLater(
+          entity.findBehavior<TestBehavior>,
+          throwsBehaviorNotFoundFor<TestBehavior>(),
+        );
       },
     );
 
@@ -58,7 +74,7 @@ void main() {
         expect(entity.hasBehavior<TestBehavior>(), isTrue);
 
         behavior.removeFromParent();
-        game.update(0);
+        await game.ready();
         expect(entity.hasBehavior<TestBehavior>(), isFalse);
       },
     );
