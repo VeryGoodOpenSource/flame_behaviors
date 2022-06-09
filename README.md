@@ -97,13 +97,9 @@ information.
 
 ### Collision detection
 
-Flame comes with a powerful built-in [collision detection system](https://docs.flame-engine.org/1.2.0/flame/collision_detection.html) 
-but this API is not strongly typed. Components always get the colliding component as a 
-`PositionComponent` and developers need to manually check what type of class it exactly is. And 
-because `flame_behaviors` is all about enforcing a strongly typed API, it provide a special 
-behavior called `CollisionBehavior` that describe what type of entity it is interested for 
-collision. It does not however do any real collision detection, that is done by the 
-`PropagatingCollisionBehavior`.
+Flame comes with a powerful built-in [collision detection system](https://docs.flame-engine.org/1.2.0/flame/collision_detection.html), but this API is not strongly typed. Components always get the colliding component as a `PositionComponent` and developers need to manually check what type of class it is. 
+
+`flame_behaviors` is all about enforcing a strongly typed API. It provides a special behavior called `CollisionBehavior` that describes what type of entity it will target for collision. It does not, however, do any real collision detection. That is done by the `PropagatingCollisionBehavior`.
 
 It does this by registering a hitbox on the parent entity and when that hitbox has a collision the 
 `PropagatingCollisionBehavior` checks if the component that the parent entity is colliding with is 
