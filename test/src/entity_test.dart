@@ -45,13 +45,19 @@ void main() {
 
         await game.ensureAdd(entity);
 
-        expect(entity.findBehavior<TestBehavior>(), isNull);
+        await expectLater(
+          entity.findBehavior<TestBehavior>,
+          throwsBehaviorNotFoundFor<TestBehavior>(),
+        );
         await entity.ensureAdd(behavior);
         expect(entity.findBehavior<TestBehavior>(), isNotNull);
 
         behavior.removeFromParent();
         await game.ready();
-        expect(entity.findBehavior<TestBehavior>(), isNull);
+        await expectLater(
+          entity.findBehavior<TestBehavior>,
+          throwsBehaviorNotFoundFor<TestBehavior>(),
+        );
       },
     );
 

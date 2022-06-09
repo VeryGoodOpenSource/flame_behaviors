@@ -47,19 +47,29 @@ abstract class Entity extends PositionComponent with HasGameRef {
   /// to this entity.
   ///
   /// This will only return a behavior that has a completed lifecycle, aka it
-  /// is fully mounted.
-  T? findBehavior<T extends Behavior>() {
+  /// is fully mounted. If no behavior is found, it will throw a [StateError].
+  T findBehavior<T extends Behavior>() {
     final it = findBehaviors<T>().iterator;
-
-    // TODO: throw state error if not exist.
-    return it.moveNext() ? it.current : null;
+    if (!it.moveNext()) {
+      throw StateError('No behavior of type $T found.');
+    }
+    return it.current;
   }
 
   /// Checks if this entity has at least one behavior with the given type.
   ///
-  /// This will only return true if the behavior type has a completed
-  /// lifecycle, aka it is fully mounted.
+  ///
+  /// This will only return true if the behavior with the type [T] has a
+  /// completed lifecycle, aka it is fully mounted.
   bool hasBehavior<T extends Behavior>() {
-    return findBehavior<T>() != null;
+    try {
+      findBehavior<T>();
+      return true;
+    } catch (e) {
+      if (e is StateError) {
+        return false;
+      }
+      rethrow;
+    }
   }
 }
