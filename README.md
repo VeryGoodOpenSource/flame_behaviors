@@ -14,24 +14,22 @@ Developed with 💙 by [Very Good Ventures][very_good_ventures_link] 🦄
 
 ---
 
-Flame Behaviors was created to ensure that games created at VGV are scalable, testable and have a 
-well defined structure in the code-base. By applying 
+Flame Behaviors was created to make it easier to create scalable, testable games with a 
+well-defined structure. It applies the
 [separation of concerns][separation_of_concerns] to the game logic, in the form of 
-[Entities](#entity) and [Behaviors](#behavior), the package allows game developers to write 
-structured code for their games that is both scalable and testable.
+[Entities](#entity) and [Behaviors](#behavior).
 
-Bit confused on what we mean with Entities and Behaviors? No worries, just imagine you want to 
-build an old school [Pong game](https://en.wikipedia.org/wiki/Pong), at its very core it exists 
-out of two objects, a paddle and a ball. If we have a look at the paddle you could say its game 
-logic is: move up and move down. And the ball has the simple game logic of: on collision with a 
-paddle, reverse movement direction.
+Imagine you want to 
+build an old school [Pong game](https://en.wikipedia.org/wiki/Pong). At its very core are two objects: a paddle and a ball. If you have a look at the paddle, you could say its game 
+logic is: move up and move down. The ball has the simple game logic of: on collision with a 
+paddle and reverse movement direction.
 
-These objects, paddles and balls, are what we call Entities. And those game logics we just 
-described are their Behaviors. And by applying these behaviors to each individual entity we get 
+These objects, paddles and balls, are what we call entities. And the game logics we just 
+described are their behaviors. And by applying these behaviors to each individual entity we get 
 the core gameplay loop of Pong: hitting balls with our paddles until we win.
 
-So to circle back, by defining what kind of entities our game has and describing what type of 
-behaviors they may hold, we can easily turn a game play idea into a structured game that is both 
+By defining what kind of entities our game has and describing what type of 
+behaviors they may hold, we can easily turn a gameplay idea into a structured game that is both 
 testable and scalable.
 
 ---
