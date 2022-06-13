@@ -19,18 +19,17 @@ well-defined structure. It applies the
 [separation of concerns][separation_of_concerns] to the game logic, in the form of 
 [Entities](#entity) and [Behaviors](#behavior).
 
-Imagine you want to 
-build an old school [Pong game](https://en.wikipedia.org/wiki/Pong). At its very core are two objects: a paddle and a ball. If you have a look at the paddle, you could say its game 
-logic is: move up and move down. The ball has the simple game logic of: on collision with a 
-paddle and reverse movement direction.
+Imagine you want to build an old school [Pong game](https://en.wikipedia.org/wiki/Pong). At its 
+very core are two objects: a paddle and a ball. If you have a look at the paddle, you could say 
+its game logic is: move up and move down. The ball has the simple game logic of: on collision with 
+a paddle reverse the movement direction.
 
-These objects, paddles and balls, are what we call entities. And the game logics we just 
-described are their behaviors. And by applying these behaviors to each individual entity we get 
-the core gameplay loop of Pong: hitting balls with our paddles until we win.
+These objects, paddles and balls, are what we call entities. And the game logics we just described 
+are their behaviors. And by applying these behaviors to each individual entity we get the core 
+gameplay loop of Pong: hitting balls with our paddles until we win.
 
-By defining what kind of entities our game has and describing what type of 
-behaviors they may hold, we can easily turn a gameplay idea into a structured game that is both 
-testable and scalable.
+By defining what kind of entities our game has and describing what type of behaviors they may hold, 
+we can easily turn a gameplay idea into a structured game that is both testable and scalable.
 
 ---
 
