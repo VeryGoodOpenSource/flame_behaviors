@@ -14,10 +14,25 @@ Developed with 💙 by [Very Good Ventures][very_good_ventures_link] 🦄
 
 ---
 
-An implementation of the behavioral composition pattern for Flame.
+Flame Behaviors was created to ensure that games created at VGV are scalable, testable and have a 
+well defined structure in the code-base. By applying 
+[separation of concerns][separation_of_concerns] to the game logic, in the form of 
+[Entities](#entity) and [Behaviors](#behavior), the package allows game developers to write 
+structured code for their games that is both scalable and testable.
 
-TODO: explain why it exists and what the benefits are.
-TODO: Zoom out and explain some overal structure of a game and how entities/behaviors fit into that.
+Bit confused on what we mean with Entities and Behaviors? No worries, just imagine you want to 
+build an old school [Pong game](https://en.wikipedia.org/wiki/Pong), at its very core it exists 
+out of two objects, a paddle and a ball. If we have a look at the paddle you could say its game 
+logic is: move up and move down. And the ball has the simple game logic of: on collision with a 
+paddle, reverse movement direction.
+
+These objects, paddles and balls, are what we call Entities. And those game logics we just 
+described are their Behaviors. And by applying these behaviors to each individual entity we get 
+the core gameplay loop of Pong: hitting balls with our paddles until we win.
+
+So to circle back, by defining what kind of entities our game has and describing what type of 
+behaviors they may hold, we can easily turn a game play idea into a structured game that is both 
+testable and scalable.
 
 ---
 
@@ -121,7 +136,7 @@ entities themselves, the collision detection system does not have to go through 
 behaviors, for which there could be many per entity. We only do that now if we confirm a collision 
 has happened. 
 
-The second benefit is that it allows for [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns). 
+The second benefit is that it allows for [separation of concerns][separation_of_concerns]. 
 Each `CollisionBehavior` handles a specific collision use case and ensures that the developer does 
 not have to write a bunch of if statements in one big method to figure out what it is colliding 
 with.
@@ -170,3 +185,4 @@ class MyParentEntity extends Entity {O
 [very_good_ventures_link_light]: https://verygood.ventures/?utm_source=github&utm_medium=banner&utm_campaign=CLI#gh-light-mode-only
 [flame_badge_link]: https://img.shields.io/badge/Powered%20by-%F0%9F%94%A5-orange.svg
 [flame_link]: https://flame-engine.org
+[separation_of_concerns]: https://en.wikipedia.org/wiki/Separation_of_concerns
