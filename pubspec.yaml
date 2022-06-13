@@ -1,5 +1,5 @@
 name: flame_behaviors
-description: An implementation of the behavioral composition pattern for Flame built by Very Good Ventures.
+description: Flame Behaviors applies separation of concerns to game logic in the form of Entities and Behaviors, built by Very Good Ventures.
 version: 0.0.1-dev.1
 homepage: https://github.com/VeryGoodOpenSource/flame_behaviors
 
