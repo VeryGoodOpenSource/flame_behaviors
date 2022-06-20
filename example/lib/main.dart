@@ -14,7 +14,7 @@ class ExampleGame extends FlameGame
     await add(ScreenHitbox());
 
     var shapeEntity = _randomEntity(
-      position: Vector2.zero(),
+      position: size / 2,
       size: Vector2.all(50) + Vector2.random(_rng) * 100,
     );
     await add(shapeEntity);
@@ -26,17 +26,10 @@ class ExampleGame extends FlameGame
   }
 
   final _rng = Random();
-  final _distance = Vector2(100, 0);
 
   Entity nextRandomEntity(Entity entity) {
     final size = Vector2.all(50) + Vector2.random(_rng) * 100;
-    final isXOverflow =
-        entity.position.x + entity.size.x / 2 + _distance.x + size.x > size.x;
-    var position = _distance + Vector2(0, entity.position.y + 200);
-    if (!isXOverflow) {
-      position = (entity.position + _distance)..x += size.x / 2;
-    }
-    return _randomEntity(position: position, size: size);
+    return _randomEntity(position: this.size / 2, size: size);
   }
 
   Entity _randomEntity({
