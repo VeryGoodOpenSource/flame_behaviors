@@ -26,9 +26,8 @@ abstract class CollisionBehavior<Collider extends Component,
   bool get isColliding {
     final propagatingCollisionBehavior =
         parent.findBehavior<PropagatingCollisionBehavior>();
-    final activeCollisions = propagatingCollisionBehavior.activeCollisions;
 
-    return activeCollisions
+    return propagatingCollisionBehavior.activeCollisions
         .map(propagatingCollisionBehavior._findEntity)
         .whereType<Collider>()
         .isNotEmpty;
@@ -54,9 +53,9 @@ abstract class CollisionBehavior<Collider extends Component,
 /// Any other entity that has a [CollisionBehavior] for that entity attached
 /// will then be able to collide with it.
 ///
-/// **Note**: This behavior can only be used for collisions between entities.
-/// It cannot be used for collisions between an entity and a non-entity
-/// component.
+/// **Note**: This behavior can also be used for collisions between entities
+/// and non-entity components, by passing the component's type as the
+/// `Collider` to the [CollisionBehavior].
 /// {@endtemplate}
 class PropagatingCollisionBehavior extends Behavior with CollisionCallbacks {
   /// {@macro propagating_collision_behavior}
@@ -77,10 +76,17 @@ class PropagatingCollisionBehavior extends Behavior with CollisionCallbacks {
   /// List of [CollisionBehavior]s to which it can propagate to.
   List<CollisionBehavior> _propagateToBehaviors = [];
 
-  Entity? _findEntity(PositionComponent other) {
+  /// Tries to find the entity that is colliding with the given entity.
+  ///
+  /// It will check if the parent is either a [PropagatingCollisionBehavior]
+  /// or a [Entity]. If it is neither, it will return [other].
+  Component? _findEntity(PositionComponent other) {
     final parent = other.parent;
     if (parent is! PropagatingCollisionBehavior && parent is! Entity) {
-      return null;
+      if (other is ShapeHitbox) {
+        return other.parent;
+      }
+      return other;
     }
 
     return parent is Entity
@@ -96,7 +102,7 @@ class PropagatingCollisionBehavior extends Behavior with CollisionCallbacks {
     activeCollisions.add(other);
     final otherEntity = _findEntity(other);
     if (otherEntity == null) {
-      return super.onCollisionStart(intersectionPoints, other);
+      return;
     }
 
     for (final behavior in _propagateToBehaviors) {
@@ -112,7 +118,7 @@ class PropagatingCollisionBehavior extends Behavior with CollisionCallbacks {
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     final otherEntity = _findEntity(other);
     if (otherEntity == null) {
-      return super.onCollision(intersectionPoints, other);
+      return;
     }
 
     for (final behavior in _propagateToBehaviors) {
@@ -128,7 +134,7 @@ class PropagatingCollisionBehavior extends Behavior with CollisionCallbacks {
     activeCollisions.remove(other);
     final otherEntity = _findEntity(other);
     if (otherEntity == null) {
-      return super.onCollisionEnd(other);
+      return;
     }
 
     for (final behavior in _propagateToBehaviors) {

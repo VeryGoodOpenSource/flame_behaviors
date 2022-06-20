@@ -17,6 +17,7 @@ class Rectangle extends Entity with HasPaint {
             PropagatingCollisionBehavior(RectangleHitbox()),
             RectangleCollisionBehavior(),
             CircleCollisionBehavior(),
+            ScreenCollisionBehavior(),
             MovementBehavior(velocity: velocity),
             RotationBehavior(rotationSpeed: rotationSpeed),
             FreezeBehavior(),

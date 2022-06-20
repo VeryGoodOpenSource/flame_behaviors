@@ -21,12 +21,10 @@ class _EntityB extends Entity {
 }
 
 class _EntityC extends Entity {
-  _EntityC({
-    super.children,
-  }) : super(size: Vector2.all(16));
+  _EntityC() : super(size: Vector2.all(16));
 }
 
-abstract class _CollisionBehavior<A extends Entity, B extends Entity>
+abstract class _CollisionBehavior<A extends Component, B extends Entity>
     extends CollisionBehavior<A, B> {
   bool onCollisionStartCalled = false;
   bool onCollisionCalled = false;
@@ -54,6 +52,9 @@ abstract class _CollisionBehavior<A extends Entity, B extends Entity>
 class _CollisionBehaviorAtoB extends _CollisionBehavior<_EntityB, _EntityA> {}
 
 class _CollisionBehaviorAtoC extends _CollisionBehavior<_EntityC, _EntityA> {}
+
+class _CollisionBehaviorAtoComponent
+    extends _CollisionBehavior<PositionComponent, _EntityA> {}
 
 void main() {
   final flameTester = FlameTester(TestGame.new);
@@ -134,11 +135,14 @@ void main() {
         (game) async {
           final collisionBehaviorAtoB = _CollisionBehaviorAtoB();
           final collisionBehaviorAtoC = _CollisionBehaviorAtoC();
+          final collisionBehaviorAtoComponent =
+              _CollisionBehaviorAtoComponent();
           final entityA = _EntityA(
             behaviors: [
               PropagatingCollisionBehavior(RectangleHitbox()),
               collisionBehaviorAtoB,
-              collisionBehaviorAtoC
+              collisionBehaviorAtoC,
+              collisionBehaviorAtoComponent,
             ],
           );
 
@@ -146,13 +150,22 @@ void main() {
             behaviors: [PropagatingCollisionBehavior(RectangleHitbox())],
           );
 
+          final positionComponent = PositionComponent(
+            size: Vector2.all(16),
+            children: [
+              RectangleHitbox(),
+            ],
+          );
+
           await game.ensureAdd(entityA);
           await game.ensureAdd(entityB);
+          await game.ensureAdd(positionComponent);
 
           game.update(0);
 
           expect(collisionBehaviorAtoB.onCollisionStartCalled, isTrue);
           expect(collisionBehaviorAtoC.onCollisionStartCalled, isFalse);
+          expect(collisionBehaviorAtoComponent.onCollisionStartCalled, isTrue);
         },
       );
 
@@ -184,84 +197,20 @@ void main() {
         'on end to the correct collision behavior',
         (game) async {
           final collisionBehaviorAtoB = _CollisionBehaviorAtoB();
+          final collisionBehaviorAtoC = _CollisionBehaviorAtoC();
+          final collisionBehaviorAtoComponent =
+              _CollisionBehaviorAtoComponent();
           final entityA = _EntityA(
             behaviors: [
               PropagatingCollisionBehavior(RectangleHitbox()),
               collisionBehaviorAtoB,
+              collisionBehaviorAtoC,
+              collisionBehaviorAtoComponent,
             ],
           );
 
           final entityB = _EntityB(
             behaviors: [PropagatingCollisionBehavior(RectangleHitbox())],
-          );
-
-          await game.ensureAdd(entityA);
-          await game.ensureAdd(entityB);
-
-          game.update(0);
-
-          expect(collisionBehaviorAtoB.onCollisionEndCalled, isFalse);
-
-          entityB.position += Vector2.all(50);
-
-          game.update(0);
-
-          expect(collisionBehaviorAtoB.onCollisionEndCalled, isTrue);
-        },
-      );
-
-      group('only if it collides with an entity', () {
-        flameTester.test('on start', (game) async {
-          final collisionBehaviorAtoB = _CollisionBehaviorAtoB();
-          final collisionBehaviorAtoC = _CollisionBehaviorAtoC();
-          final entityA = _EntityA(
-            behaviors: [
-              PropagatingCollisionBehavior(RectangleHitbox()),
-              collisionBehaviorAtoB,
-              collisionBehaviorAtoC
-            ],
-          );
-
-          await game.ensureAdd(entityA);
-          await game.ensureAdd(
-            PositionComponent(
-              size: Vector2.all(16),
-              children: [
-                RectangleHitbox(),
-              ],
-            ),
-          );
-          await game.ensureAdd(
-            _EntityC(
-              children: [
-                RectangleHitbox(),
-              ],
-            ),
-          );
-
-          game.update(0);
-
-          expect(collisionBehaviorAtoB.onCollisionStartCalled, isFalse);
-          expect(collisionBehaviorAtoC.onCollisionStartCalled, isTrue);
-
-          expect(collisionBehaviorAtoB.onCollisionCalled, isFalse);
-          expect(collisionBehaviorAtoC.onCollisionCalled, isTrue);
-        });
-        flameTester.test('on end', (game) async {
-          final collisionBehaviorAtoB = _CollisionBehaviorAtoB();
-          final collisionBehaviorAtoC = _CollisionBehaviorAtoC();
-          final entityA = _EntityA(
-            behaviors: [
-              PropagatingCollisionBehavior(RectangleHitbox()),
-              collisionBehaviorAtoB,
-              collisionBehaviorAtoC
-            ],
-          );
-
-          final entityC = _EntityC(
-            children: [
-              RectangleHitbox(),
-            ],
           );
 
           final positionComponent = PositionComponent(
@@ -272,20 +221,25 @@ void main() {
           );
 
           await game.ensureAdd(entityA);
+          await game.ensureAdd(entityB);
           await game.ensureAdd(positionComponent);
-          await game.ensureAdd(entityC);
-
-          game.update(0);
-
-          entityC.position += Vector2.all(50);
-          positionComponent.position += Vector2.all(50);
 
           game.update(0);
 
           expect(collisionBehaviorAtoB.onCollisionEndCalled, isFalse);
-          expect(collisionBehaviorAtoC.onCollisionEndCalled, isTrue);
-        });
-      });
+          expect(collisionBehaviorAtoC.onCollisionEndCalled, isFalse);
+          expect(collisionBehaviorAtoComponent.onCollisionEndCalled, isFalse);
+
+          entityB.position += Vector2.all(50);
+          positionComponent.position += Vector2.all(50);
+
+          game.update(0);
+
+          expect(collisionBehaviorAtoB.onCollisionEndCalled, isTrue);
+          expect(collisionBehaviorAtoC.onCollisionEndCalled, isFalse);
+          expect(collisionBehaviorAtoComponent.onCollisionEndCalled, isTrue);
+        },
+      );
     });
   });
 }
