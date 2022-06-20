@@ -1,3 +1,9 @@
+# [0.1.1](https://github.com/VeryGoodOpenSource/flame_behaviors/compare/v0.1.0...v0.1.1) (2022-06-20)
+
+### Bug Fixes
+
+- `PropagatingCollisionBehavior` should also work for non entity components ([#20](https://github.com/VeryGoodOpenSource/flame_behaviors/issues/20)) ([ca5fc6c](https://github.com/VeryGoodOpenSource/flame_behaviors/commit/ca5fc6c2862d58348a7b2a72814f58d370161982))
+
 # [0.1.0](https://github.com/VeryGoodOpenSource/flame_behaviors/compare/v0.0.1-dev.1...v0.1.0) (2022-06-13)
 
 ### Bug Fixes
@@ -12,3 +18,5 @@
 - initial `flame_behaviors` implementation ([#2](https://github.com/VeryGoodOpenSource/flame_behaviors/issues/2)) ([766ebe6](https://github.com/VeryGoodOpenSource/flame_behaviors/commit/766ebe6f398cdb96e93425d86713760c0664075d))
 - make the internal find behavior logic more clear on when it can find something ([#12](https://github.com/VeryGoodOpenSource/flame_behaviors/issues/12)) ([e778b00](https://github.com/VeryGoodOpenSource/flame_behaviors/commit/e778b00c06f0bdd3d973548458402e7a3fa051b1))
 - proxy `debugMode` down to individual behaviors ([#9](https://github.com/VeryGoodOpenSource/flame_behaviors/issues/9)) ([eaab29f](https://github.com/VeryGoodOpenSource/flame_behaviors/commit/eaab29f3fd17412072e975bd11ebf2828adf548a))
+
+## 0.0.1-dev.1 (2022-05-04)
