@@ -20,7 +20,7 @@ well-defined structure. It applies the
 [Entities](#entity) and [Behaviors](#behavior).
 
 Imagine you want to build an old school [Pong game](https://en.wikipedia.org/wiki/Pong). At its 
-very core are two objects: a paddle and a ball. If you have a look at the paddle, you could say 
+very core there are two objects: a paddle and a ball. If you have a look at the paddle, you could say 
 its game logic is: move up and move down. The ball has the simple game logic of: on collision with 
 a paddle reverse the movement direction.
 
