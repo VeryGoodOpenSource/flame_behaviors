@@ -46,5 +46,5 @@ as GitHub issue.
 
 ## License
 
-By contributing to very_good_evaluate, you agree that your contributions will be licensed
+By contributing to flame_behaviors, you agree that your contributions will be licensed
 under its [license](LICENSE).
