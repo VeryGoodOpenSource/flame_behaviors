@@ -73,6 +73,7 @@ the concepts!
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
 [very_good_ventures_link]: https://verygood.ventures/?utm_source=github&utm_medium=banner&utm_campaign=CLI
 [flame_link]: https://flame-engine.org
+[flame_package_link]: https://pub.dev/packages/flame
 [flame_badge_link]: https://img.shields.io/badge/Powered%20by-%F0%9F%94%A5-orange.svg
 [separation_of_concerns]: https://en.wikipedia.org/wiki/Separation_of_concerns
 [flame_behaviors_article]: https://verygood.ventures/blog/build-games-with-flame-behaviors
