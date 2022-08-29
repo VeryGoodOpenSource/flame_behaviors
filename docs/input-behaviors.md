@@ -1,0 +1,25 @@
+# Input behaviors ⌨
+
+The `flame_behaviors` package also provides input behaviors. These behaviors are a layer over the 
+existing Flame input mixins for components. These behaviors will trigger when their parent entity 
+is being interacted with by the user. So these events are always relative to the parent entity.
+
+## DraggableBehavior
+
+The `DraggableBehavior` brings the [drag events][flame_drag_docs] from Flame into a behavioral 
+format.
+
+```dart
+class MyDraggableBehavior extends DraggableBehavior<MyEntity> {
+  @override
+  bool onDragUpdate(DragUpdateInfo info) {
+    // Do something on drag update event.
+    return super.onDragUpdate(info);
+  }
+}
+```
+
+> **Note**: To use this behavior you need to add the `HasDraggables` mixin to your game class.
+
+[flame_input_docs]: https://docs.flame-engine.org/1.3.0/flame/inputs/inputs.html
+[flame_drag_docs]: https://docs.flame-engine.org/1.3.0/flame/inputs/gesture-input.html#draggable-components

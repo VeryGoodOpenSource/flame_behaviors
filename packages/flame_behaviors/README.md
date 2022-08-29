@@ -28,7 +28,9 @@ flutter pub add flame_behaviors
 
 ## Creating Entities and Behaviors
 
-Use Flame Behaviors to define your entities in your game and their behavioral aspects. Or follow the [Introduction to Flame Behaviors][flame_behaviors_article] article to get you with the concepts!
+Use Flame Behaviors to define your entities in your game and their behavioral aspects. Or follow 
+the [Introduction to Flame Behaviors][flame_behaviors_article] article to get you familiar with 
+the concepts!
 
 ## Documentation 📝
 
