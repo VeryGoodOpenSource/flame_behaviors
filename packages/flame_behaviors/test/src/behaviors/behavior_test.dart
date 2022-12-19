@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../../helpers/test_game.dart';
 
-class _TestEntity extends Entity {
+class _TestEntity extends PositionedEntity {
   _TestEntity({super.behaviors}) : super(size: Vector2.all(32));
 }
 
@@ -17,36 +17,54 @@ void main() {
   final flameTester = FlameTester(TestGame.new);
 
   group('Behavior', () {
-    flameTester.test('can be added to an Entity', (game) async {
-      final testBehavior = _TestBehavior();
-      final testEntity = _TestEntity(
-        behaviors: [testBehavior],
-      );
+    flameTester.testGameWidget(
+      'can be added to an Entity',
+      setUp: (game, tester) async {
+        final behavior = _TestBehavior();
+        final entity = _TestEntity(behaviors: [behavior]);
+        await game.ensureAdd(entity);
+      },
+      verify: (game, tester) async {
+        final entity = game.firstChild<_TestEntity>()!;
 
-      await game.ensureAdd(testEntity);
-      expect(game.descendants().whereType<_TestBehavior>().length, equals(1));
-      expect(testEntity.children.contains(testBehavior), isTrue);
-    });
+        expect(game.descendants().whereType<_TestBehavior>().length, equals(1));
+        expect(entity.children.whereType<_TestBehavior>().length, equals(1));
+      },
+    );
 
-    flameTester.test('contains point is relative to parent', (game) async {
-      final behavior = _TestBehavior();
-      final entity = _TestEntity(behaviors: [behavior]);
-      await game.ensureAdd(entity);
+    flameTester.testGameWidget(
+      'contains point is relative to parent',
+      setUp: (game, tester) async {
+        final behavior = _TestBehavior();
+        final entity = _TestEntity(behaviors: [behavior]);
+        await game.ensureAdd(entity);
+      },
+      verify: (game, tester) async {
+        final entity = game.firstChild<_TestEntity>()!;
+        final behavior = entity.firstChild<_TestBehavior>()!;
 
-      expect(behavior.containsPoint(Vector2.zero()), isTrue);
-      expect(behavior.containsPoint(Vector2(31, 31)), isTrue);
-      expect(behavior.containsPoint(Vector2(32, 32)), isFalse);
-    });
+        expect(behavior.containsPoint(Vector2.zero()), isTrue);
+        expect(behavior.containsPoint(Vector2(31, 31)), isTrue);
+        expect(behavior.containsPoint(Vector2(32, 32)), isFalse);
+      },
+    );
 
-    flameTester.test('debugMode is provided by the parent', (game) async {
-      final behavior = _TestBehavior();
-      final entity = _TestEntity(behaviors: [behavior]);
-      await game.ensureAdd(entity);
+    flameTester.testGameWidget(
+      'debugMode is provided by the parent',
+      setUp: (game, tester) async {
+        final behavior = _TestBehavior();
+        final entity = _TestEntity(behaviors: [behavior]);
+        await game.ensureAdd(entity);
+      },
+      verify: (game, tester) async {
+        final entity = game.firstChild<_TestEntity>()!;
+        final behavior = entity.firstChild<_TestBehavior>()!;
 
-      expect(behavior.debugMode, isFalse);
-      entity.debugMode = true;
-      expect(behavior.debugMode, isTrue);
-    });
+        expect(behavior.debugMode, isFalse);
+        entity.debugMode = true;
+        expect(behavior.debugMode, isTrue);
+      },
+    );
 
     group('children', () {
       late _TestBehavior testBehavior;
@@ -59,29 +77,41 @@ void main() {
         );
       });
 
-      flameTester.test('can have its own children', (game) async {
-        await game.ensureAdd(testEntity);
+      flameTester.testGameWidget(
+        'can have its own children',
+        setUp: (game, tester) async {
+          await game.ensureAdd(testEntity);
+        },
+        verify: (game, tester) async {
+          expect(() => testBehavior.add(Component()), returnsNormally);
+        },
+      );
 
-        expect(() => testBehavior.add(Component()), returnsNormally);
-      });
+      flameTester.testGameWidget(
+        'can not have behaviors as children',
+        setUp: (game, tester) async {
+          await game.ensureAdd(testEntity);
+        },
+        verify: (game, tester) async {
+          expect(
+            () => testBehavior.add(_TestBehavior()),
+            failsAssert('Behaviors cannot have behaviors.'),
+          );
+        },
+      );
 
-      flameTester.test('can not have behaviors as children', (game) async {
-        await game.ensureAdd(testEntity);
-
-        expect(
-          () => testBehavior.add(_TestBehavior()),
-          failsAssert('Behaviors cannot have behaviors.'),
-        );
-      });
-
-      flameTester.test('can not have entities as children', (game) async {
-        await game.ensureAdd(testEntity);
-
-        expect(
-          () => testBehavior.add(_TestEntity()),
-          failsAssert('Behaviors cannot have entities.'),
-        );
-      });
+      flameTester.testGameWidget(
+        'can not have entities as children',
+        setUp: (game, tester) async {
+          await game.ensureAdd(testEntity);
+        },
+        verify: (game, tester) async {
+          expect(
+            () => testBehavior.add(_TestEntity()),
+            failsAssert('Behaviors cannot have entities.'),
+          );
+        },
+      );
     });
   });
 }

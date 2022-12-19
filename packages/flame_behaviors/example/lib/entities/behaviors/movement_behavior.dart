@@ -1,7 +1,7 @@
 import 'package:flame/extensions.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 
-class MovementBehavior extends Behavior {
+class MovementBehavior extends Behavior<PositionedEntity> {
   MovementBehavior({required this.velocity});
 
   final Vector2 velocity;

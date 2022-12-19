@@ -1,11 +1,11 @@
-import 'package:example/behaviors/behaviors.dart';
+import 'package:example/entities/entities.dart';
 import 'package:example/entities/rectangle/behaviors/behaviors.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 import 'package:flutter/material.dart';
 
-class Rectangle extends Entity with HasPaint {
+class Rectangle extends PositionedEntity with HasPaint {
   Rectangle({
     super.position,
     super.size,

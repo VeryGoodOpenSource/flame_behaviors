@@ -1,4 +1,3 @@
-import 'package:example/behaviors/behaviors.dart';
 import 'package:example/entities/entities.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';

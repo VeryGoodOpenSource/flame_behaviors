@@ -8,24 +8,24 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../../helpers/helpers.dart';
 
-class _EntityA extends Entity {
+class _EntityA extends PositionedEntity {
   _EntityA({
     super.behaviors,
   }) : super(size: Vector2.all(16));
 }
 
-class _EntityB extends Entity {
+class _EntityB extends PositionedEntity {
   _EntityB({
     super.behaviors,
   }) : super(size: Vector2.all(16));
 }
 
-class _EntityC extends Entity {
+class _EntityC extends PositionedEntity {
   _EntityC() : super(size: Vector2.all(16));
 }
 
-abstract class _CollisionBehavior<A extends Component, B extends Entity>
-    extends CollisionBehavior<A, B> {
+abstract class _CollisionBehavior<A extends Component,
+    B extends PositionedEntity> extends CollisionBehavior<A, B> {
   bool onCollisionStartCalled = false;
   bool onCollisionCalled = false;
   bool onCollisionEndCalled = false;
@@ -60,9 +60,9 @@ void main() {
   final flameTester = FlameTester(TestGame.new);
 
   group('CollisionBehavior', () {
-    flameTester.test(
+    flameTester.testGameWidget(
       'isColliding returns true if it is current colliding with the Collider',
-      (game) async {
+      setUp: (game, tester) async {
         final collisionBehaviorAtoB = _CollisionBehaviorAtoB();
         final entityA = _EntityA(
           behaviors: [
@@ -77,15 +77,21 @@ void main() {
 
         await game.ensureAdd(entityA);
         await game.ensureAdd(entityB);
+      },
+      verify: (game, tester) async {
+        final entityA = game.firstChild<_EntityA>()!;
+        final collisionBehaviorAtoB =
+            entityA.firstChild<_CollisionBehaviorAtoB>()!;
+
         game.update(0);
 
         expect(collisionBehaviorAtoB.isColliding, isTrue);
       },
     );
 
-    flameTester.test(
+    flameTester.testGameWidget(
       'isColliding returns false if it is not colliding with any Colliders',
-      (game) async {
+      setUp: (game, tester) async {
         final collisionBehaviorAtoC = _CollisionBehaviorAtoC();
         final entityA = _EntityA(
           behaviors: [
@@ -100,6 +106,11 @@ void main() {
 
         await game.ensureAdd(entityA);
         await game.ensureAdd(entityB);
+      },
+      verify: (game, tester) async {
+        final entityA = game.firstChild<_EntityA>()!;
+        final collisionBehaviorAtoC =
+            entityA.firstChild<_CollisionBehaviorAtoC>()!;
 
         game.update(0);
 
@@ -109,30 +120,38 @@ void main() {
   });
 
   group('PropagatingCollisionBehavior', () {
-    flameTester.test('can be added to an Entity', (game) async {
-      final passableCollisionBehavior = PropagatingCollisionBehavior(
-        RectangleHitbox(),
-      );
-      final entityA = _EntityA(
-        behaviors: [passableCollisionBehavior],
-      );
+    flameTester.testGameWidget(
+      'can be added to an Entity',
+      setUp: (game, tester) async {
+        final passableCollisionBehavior = PropagatingCollisionBehavior(
+          RectangleHitbox(),
+        );
+        final entityA = _EntityA(behaviors: [passableCollisionBehavior]);
 
-      await game.ensureAdd(entityA);
+        await game.ensureAdd(entityA);
+      },
+      verify: (game, tester) async {
+        final entityA = game.firstChild<_EntityA>()!;
+        final passableCollisionBehavior =
+            entityA.firstChild<PropagatingCollisionBehavior>()!;
 
-      expect(
-        entityA.findBehavior<PropagatingCollisionBehavior>(),
-        equals(passableCollisionBehavior),
-      );
-      expect(
-        passableCollisionBehavior.children.whereType<RectangleHitbox>().length,
-        equals(1),
-      );
-    });
+        expect(
+          entityA.findBehavior<PropagatingCollisionBehavior>(),
+          equals(passableCollisionBehavior),
+        );
+        expect(
+          passableCollisionBehavior.children
+              .whereType<RectangleHitbox>()
+              .length,
+          equals(1),
+        );
+      },
+    );
 
     group('propagates collision', () {
-      flameTester.test(
+      flameTester.testGameWidget(
         'on start to the correct collision behavior',
-        (game) async {
+        setUp: (game, tester) async {
           final collisionBehaviorAtoB = _CollisionBehaviorAtoB();
           final collisionBehaviorAtoC = _CollisionBehaviorAtoC();
           final collisionBehaviorAtoComponent =
@@ -160,6 +179,15 @@ void main() {
           await game.ensureAdd(entityA);
           await game.ensureAdd(entityB);
           await game.ensureAdd(positionComponent);
+        },
+        verify: (game, tester) async {
+          final entityA = game.firstChild<_EntityA>()!;
+          final collisionBehaviorAtoB =
+              entityA.firstChild<_CollisionBehaviorAtoB>()!;
+          final collisionBehaviorAtoC =
+              entityA.firstChild<_CollisionBehaviorAtoC>()!;
+          final collisionBehaviorAtoComponent =
+              entityA.firstChild<_CollisionBehaviorAtoComponent>()!;
 
           game.update(0);
 
@@ -169,9 +197,9 @@ void main() {
         },
       );
 
-      flameTester.test(
+      flameTester.testGameWidget(
         'on collision to the correct collision behavior',
-        (game) async {
+        setUp: (game, tester) async {
           final collisionBehaviorAtoB = _CollisionBehaviorAtoB();
           final entityA = _EntityA(
             behaviors: [
@@ -186,6 +214,11 @@ void main() {
 
           await game.ensureAdd(entityA);
           await game.ensureAdd(entityB);
+        },
+        verify: (game, tester) async {
+          final entityA = game.firstChild<_EntityA>()!;
+          final collisionBehaviorAtoB =
+              entityA.firstChild<_CollisionBehaviorAtoB>()!;
 
           game.update(0);
 
@@ -193,9 +226,9 @@ void main() {
         },
       );
 
-      flameTester.test(
+      flameTester.testGameWidget(
         'on end to the correct collision behavior',
-        (game) async {
+        setUp: (game, tester) async {
           final collisionBehaviorAtoB = _CollisionBehaviorAtoB();
           final collisionBehaviorAtoC = _CollisionBehaviorAtoC();
           final collisionBehaviorAtoComponent =
@@ -215,14 +248,24 @@ void main() {
 
           final positionComponent = PositionComponent(
             size: Vector2.all(16),
-            children: [
-              RectangleHitbox(),
-            ],
+            children: [RectangleHitbox()],
           );
 
+          await game.ensureAdd(positionComponent);
           await game.ensureAdd(entityA);
           await game.ensureAdd(entityB);
-          await game.ensureAdd(positionComponent);
+        },
+        verify: (game, tester) async {
+          final entityA = game.firstChild<_EntityA>()!;
+          final collisionBehaviorAtoB =
+              entityA.firstChild<_CollisionBehaviorAtoB>()!;
+          final collisionBehaviorAtoC =
+              entityA.firstChild<_CollisionBehaviorAtoC>()!;
+          final collisionBehaviorAtoComponent =
+              entityA.firstChild<_CollisionBehaviorAtoComponent>()!;
+
+          final entityB = game.firstChild<_EntityB>()!;
+          final positionComponent = game.firstChild<PositionComponent>()!;
 
           game.update(0);
 

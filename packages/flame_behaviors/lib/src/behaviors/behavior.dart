@@ -8,7 +8,7 @@ import 'package:flame_behaviors/flame_behaviors.dart';
 /// A behavior can have it's own [Component]s for adding extra functionality
 /// related to the behavior. It cannot, however, have its own [Behavior]s.
 /// {@endtemplate}
-abstract class Behavior<Parent extends Entity> extends Component
+abstract class Behavior<Parent extends EntityMixin> extends Component
     with ParentIsA<Parent> {
   /// {@macro behavior}
   Behavior({
@@ -17,7 +17,7 @@ abstract class Behavior<Parent extends Entity> extends Component
 
   @override
   Future<void>? add(Component component) {
-    assert(component is! Entity, 'Behaviors cannot have entities.');
+    assert(component is! EntityMixin, 'Behaviors cannot have entities.');
     assert(component is! Behavior, 'Behaviors cannot have behaviors.');
     return super.add(component);
   }

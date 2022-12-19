@@ -6,76 +6,91 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../helpers/helpers.dart';
 
-class TestEntity extends Entity {
-  TestEntity({
+class _TestEntity extends Entity {
+  _TestEntity({
     super.behaviors,
   });
 }
 
-class TestBehavior extends Behavior<TestEntity> {}
+class _TestBehavior extends Behavior<_TestEntity> {}
 
 void main() {
   final flameTester = FlameTester(TestGame.new);
 
   group('Entity', () {
-    flameTester.test('adds behaviors directly to itself', (game) async {
-      final behavior = TestBehavior();
-      final entity = TestEntity(behaviors: [behavior]);
+    flameTester.testGameWidget(
+      'adds behaviors directly to itself',
+      setUp: (game, tester) async {
+        final behavior = _TestBehavior();
+        final entity = _TestEntity(behaviors: [behavior]);
+        await game.ensureAdd(entity);
+      },
+      verify: (game, tester) async {
+        final entity = game.firstChild<_TestEntity>()!;
 
-      await game.ensureAdd(entity);
+        expect(game.descendants().whereType<_TestBehavior>().length, equals(1));
+        expect(entity.children.whereType<_TestBehavior>().length, equals(1));
+      },
+    );
 
-      expect(entity.children.contains(behavior), isTrue);
-    });
+    flameTester.testGameWidget(
+      'adds behaviors to itself',
+      setUp: (game, tester) async {
+        final behavior = _TestBehavior();
+        final entity = _TestEntity();
+        await entity.add(behavior);
+        await game.ensureAdd(entity);
+      },
+      verify: (game, tester) async {
+        final entity = game.firstChild<_TestEntity>()!;
 
-    flameTester.test('adds behaviors to itself', (game) async {
-      final behavior = TestBehavior();
-      final entity = TestEntity();
-      await entity.add(behavior);
+        expect(game.descendants().whereType<_TestBehavior>().length, equals(1));
+        expect(entity.children.whereType<_TestBehavior>().length, equals(1));
+      },
+    );
 
-      await game.ensureAdd(entity);
-
-      expect(entity.children.contains(behavior), isTrue);
-    });
-
-    flameTester.test(
+    flameTester.testGameWidget(
       'behavior can be removed from entity and the internal cache',
-      (game) async {
-        final behavior = TestBehavior();
-        final entity = TestEntity(behaviors: []);
-
+      setUp: (game, tester) async {
+        final entity = _TestEntity(behaviors: []);
         await game.ensureAdd(entity);
 
+        final behavior = _TestBehavior();
         await expectLater(
-          entity.findBehavior<TestBehavior>,
-          throwsBehaviorNotFoundFor<TestBehavior>(),
+          entity.findBehavior<_TestBehavior>,
+          throwsBehaviorNotFoundFor<_TestBehavior>(),
         );
         await entity.ensureAdd(behavior);
-        expect(entity.findBehavior<TestBehavior>(), isNotNull);
-
+        expect(entity.findBehavior<_TestBehavior>(), isNotNull);
         behavior.removeFromParent();
-        await game.ready();
+      },
+      verify: (game, tester) async {
+        final entity = game.firstChild<_TestEntity>()!;
+
         await expectLater(
-          entity.findBehavior<TestBehavior>,
-          throwsBehaviorNotFoundFor<TestBehavior>(),
+          entity.findBehavior<_TestBehavior>,
+          throwsBehaviorNotFoundFor<_TestBehavior>(),
         );
       },
     );
 
-    flameTester.test(
+    flameTester.testGameWidget(
       'can correctly confirm if it has a behavior',
-      (game) async {
-        final behavior = TestBehavior();
-        final entity = TestEntity(behaviors: []);
-
+      setUp: (game, tester) async {
+        final entity = _TestEntity(behaviors: []);
+        final behavior = _TestBehavior();
         await game.ensureAdd(entity);
 
-        expect(entity.hasBehavior<TestBehavior>(), isFalse);
+        expect(entity.hasBehavior<_TestBehavior>(), isFalse);
         await entity.ensureAdd(behavior);
-        expect(entity.hasBehavior<TestBehavior>(), isTrue);
+        expect(entity.hasBehavior<_TestBehavior>(), isTrue);
 
         behavior.removeFromParent();
-        await game.ready();
-        expect(entity.hasBehavior<TestBehavior>(), isFalse);
+      },
+      verify: (game, tester) async {
+        final entity = game.firstChild<_TestEntity>()!;
+
+        expect(entity.hasBehavior<_TestBehavior>(), isFalse);
       },
     );
   });
