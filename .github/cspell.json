@@ -18,5 +18,9 @@
     }
   ],
   "useGitignore": true,
-  "words": []
+  "words": [
+    "Hitbox",
+    "gameplay",
+    "collidable"
+  ]
 }
