@@ -8,5 +8,5 @@ import 'package:flame_behaviors/flame_behaviors.dart';
 /// handles propagation of tap events from the root game to individual
 /// behaviors.
 /// {@endtemplate}
-abstract class TappableBehavior<Parent extends Entity> extends Behavior<Parent>
-    with Tappable {}
+abstract class TappableBehavior<Parent extends EntityMixin>
+    extends Behavior<Parent> with Tappable {}
