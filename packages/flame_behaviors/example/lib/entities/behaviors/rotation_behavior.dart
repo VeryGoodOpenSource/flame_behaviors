@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 
-class RotationBehavior extends Behavior with HasGameRef {
+class RotationBehavior extends Behavior<PositionedEntity> with HasGameRef {
   RotationBehavior({required this.rotationSpeed});
 
   final double rotationSpeed;

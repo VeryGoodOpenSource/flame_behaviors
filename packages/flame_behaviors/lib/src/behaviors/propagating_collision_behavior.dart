@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 /// the entity that is colliding with the [Parent] is an instance of [Collider].
 /// {@endtemplate}
 abstract class CollisionBehavior<Collider extends Component,
-    Parent extends Entity> extends Behavior<Parent> {
+    Parent extends PositionedEntity> extends Behavior<Parent> {
   /// Check if the given component is an instance of [Collider].
   bool isValid(Component c) => c is Collider;
 
@@ -57,7 +57,8 @@ abstract class CollisionBehavior<Collider extends Component,
 /// and non-entity components, by passing the component's type as the
 /// `Collider` to the [CollisionBehavior].
 /// {@endtemplate}
-class PropagatingCollisionBehavior extends Behavior with CollisionCallbacks {
+class PropagatingCollisionBehavior<Parent extends PositionedEntity>
+    extends Behavior<Parent> with CollisionCallbacks {
   /// {@macro propagating_collision_behavior}
   PropagatingCollisionBehavior(this._hitbox) : super(children: [_hitbox]);
 

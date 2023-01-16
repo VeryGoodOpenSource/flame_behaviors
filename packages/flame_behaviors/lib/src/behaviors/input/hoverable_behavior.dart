@@ -8,5 +8,5 @@ import 'package:flame_behaviors/flame_behaviors.dart';
 /// handles propagation of hover events from the root game to individual
 /// behaviors.
 /// {@endtemplate}
-abstract class HoverableBehavior<Parent extends Entity> extends Behavior<Parent>
-    with Hoverable {}
+abstract class HoverableBehavior<Parent extends EntityMixin>
+    extends Behavior<Parent> with Hoverable {}
