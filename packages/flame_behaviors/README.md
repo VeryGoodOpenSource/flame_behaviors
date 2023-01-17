@@ -17,7 +17,8 @@ Developed with 💙 and 🔥 by [Very Good Ventures][very_good_ventures_link] �
 
 ### Installing 🧑‍💻
 
-In order to use Flame Behaviors you must have the [Flame package][flame_package_link] added to your project.
+In order to use Flame Behaviors you must have the [Flame package][flame_package_link] added to your 
+project.
 
 ### Adding the package
 
