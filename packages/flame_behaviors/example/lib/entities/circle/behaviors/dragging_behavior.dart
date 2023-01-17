@@ -3,13 +3,13 @@ import 'package:flame/extensions.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 
 class DraggingBehavior extends DraggableBehavior<Circle> {
-  MovementBehavior? movement;
+  MovingBehavior? movement;
 
   Vector2? originalVelocity;
 
   @override
   Future<void> onLoad() async {
-    movement = parent.findBehavior<MovementBehavior>();
+    movement = parent.findBehavior<MovingBehavior>();
   }
 
   @override

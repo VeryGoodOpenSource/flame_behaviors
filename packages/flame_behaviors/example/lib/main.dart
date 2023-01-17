@@ -12,7 +12,7 @@ class ExampleGame extends FlameGame
     await add(ScreenHitbox());
 
     // Game-specific behaviors
-    await add(SpawnBehavior());
+    await add(SpawningBehavior());
 
     return super.onLoad();
   }

@@ -1,3 +1,3 @@
-export 'circle_collision_behavior.dart';
-export 'freeze_behavior.dart';
-export 'rectangle_collision_behavior.dart';
+export 'circle_colliding_behavior.dart';
+export 'freezing_behavior.dart';
+export 'rectangle_colliding_behavior.dart';

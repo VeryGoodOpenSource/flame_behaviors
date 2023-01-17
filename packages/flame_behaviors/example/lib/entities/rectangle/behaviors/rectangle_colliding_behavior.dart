@@ -3,16 +3,17 @@ import 'package:flame/extensions.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 import 'package:flutter/material.dart';
 
-class CircleCollisionBehavior extends CollisionBehavior<Circle, Rectangle> {
-  final _collisionColor = Colors.green.withOpacity(0.8);
+class RectangleCollidingBehavior
+    extends CollisionBehavior<Rectangle, Rectangle> {
+  final _collisionColor = Colors.yellow.withOpacity(0.8);
 
   @override
-  void onCollisionStart(Set<Vector2> intersectionPoints, Circle other) {
+  void onCollisionStart(Set<Vector2> intersectionPoints, Rectangle other) {
     parent.paint.color = _collisionColor;
   }
 
   @override
-  void onCollisionEnd(Circle other) {
+  void onCollisionEnd(Rectangle other) {
     if (!isColliding) {
       parent.paint.color = parent.defaultColor;
     }

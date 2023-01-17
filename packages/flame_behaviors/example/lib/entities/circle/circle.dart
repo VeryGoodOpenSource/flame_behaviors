@@ -19,9 +19,9 @@ class Circle extends PositionedEntity with HasPaint {
             PropagatingCollisionBehavior(CircleHitbox()),
             CircleCollisionBehavior(),
             RectangleCollisionBehavior(),
-            ScreenCollisionBehavior(),
-            MovementBehavior(velocity: velocity),
-            RotationBehavior(rotationSpeed: rotationSpeed),
+            ScreenCollidingBehavior(),
+            MovingBehavior(velocity: velocity),
+            RotatingBehavior(rotationSpeed: rotationSpeed),
             DraggingBehavior()
           ],
         );

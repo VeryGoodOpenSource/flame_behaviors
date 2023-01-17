@@ -1,1 +1,1 @@
-export 'spawn_behavior.dart';
+export 'spawning_behavior.dart';

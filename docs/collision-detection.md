@@ -52,3 +52,5 @@ class MyParentEntity extends Entity {O
   ...
 }
 ```
+
+[separation_of_concerns]: https://en.wikipedia.org/wiki/Separation_of_concerns
