@@ -7,7 +7,7 @@ optional. Feel free to use whatever coding conventions you prefer.
 
 Entities should not contain any behavioral logic, instead they should be composed of behaviors. This
 allows for more flexible and reusable code. Entities should not do any direct rendering, instead they
-should add child components to themselves to do the visualization of the entity.
+should add child components to handle the visualization of the entity.
 
 #### Examples
 
