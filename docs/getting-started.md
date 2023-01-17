@@ -110,7 +110,7 @@ Flame Behaviors also provides some conventions on how to name and organize your 
 - [Naming Conventions][naming_conventions_link]
 - [Code Conventions][code_conventions_link]
 
-If you want to learn more about how to use Flame Behaviors, you can check out the [article][article_link].
+To learn more about how to use Flame Behaviors, check out our [article][article_link].
 
 [flame_package_link]: https://pub.dev/packages/flame
 [flame_behaviors_package_link]: https://pub.dev/packages/flame_behaviors
