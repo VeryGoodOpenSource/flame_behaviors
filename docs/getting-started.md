@@ -28,7 +28,7 @@ class MyEntity extends Entity {
 }
 ```
 
-### Types of entities
+### Types of Entities
 
 There are two types of entities in Flame Behaviors:
 
