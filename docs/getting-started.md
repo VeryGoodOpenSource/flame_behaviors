@@ -100,7 +100,7 @@ class MyBehavior extends Behavior {
 **Note**: A `Behavior` is a non-visual component that describes how a visual component (Entity)
 behaves. To ensure this rule, a behavior can't have its own `Behavior`s.
 
-## Whats next
+## What's Next
 
 The following sections will show you how to use Flame Behaviors for common game development tasks:
 - [Handling game input][input_behaviors_link]
