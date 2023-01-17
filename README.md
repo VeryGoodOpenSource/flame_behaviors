@@ -49,7 +49,7 @@ View the full documentation [here](https://github.com/VeryGoodOpenSource/flame_b
 
 In order to use Flame Behaviors you must have the [Flame package][flame_package_link] added to your project.
 
-### Adding the package
+### Adding the Package
 
 ```shell
 # 📦 Add the flame_behaviors package from pub.dev to your project
