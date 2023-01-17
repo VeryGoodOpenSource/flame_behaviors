@@ -107,8 +107,8 @@ The following sections will show you how to use Flame Behaviors for common game 
 - [Handling Collisions][collision_behaviors_link
 
 Flame Behaviors also provides some conventions on how to name and organize your code:
-- [Naming conventions][naming_conventions_link]
-- [Code conventions][code_conventions_link]
+- [Naming Conventions][naming_conventions_link]
+- [Code Conventions][code_conventions_link]
 
 If you want to learn more about how to use Flame Behaviors, you can check out the [article][article_link].
 
