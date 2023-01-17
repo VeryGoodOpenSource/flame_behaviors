@@ -5,8 +5,7 @@ existing Flame input mixins for components. These behaviors will trigger when th
 
 ## DraggableBehavior
 
-The `DraggableBehavior` brings the [drag events][flame_drag_docs] from Flame into a behavioral
-format.
+The `DraggableBehavior` allows developers to use the [drag events][flame_drag_docs] from Flame on their entities.
 
 ```dart
 class MyDraggableBehavior extends DraggableBehavior<MyEntity> {
