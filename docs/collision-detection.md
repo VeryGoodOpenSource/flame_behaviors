@@ -14,7 +14,7 @@ parent entity. When that hitbox has a collision, the `PropagatingCollisionBehavi
 component that the parent entity is colliding with contains the target entity type specified in
 `CollisionBehavior`.
 
-By letting the `PropagatingCollisionBehavior` handle the collision detection we gain two benefits,
+There are two main benefits of letting the `PropagatingCollisionBehavior` handle the collision detection,
 the first and most important one is performance. By only registering collision callbacks on the
 entities themselves, the collision detection system does not have to go through any "collidable"
 behaviors, for which there could be many per entity. We only do that now if we confirm a collision
