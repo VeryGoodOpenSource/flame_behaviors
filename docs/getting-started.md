@@ -103,8 +103,8 @@ behaves. To ensure this rule, a behavior can't have its own `Behavior`s.
 ## What's Next
 
 The following sections will show you how to use Flame Behaviors for common game development tasks:
-- [Handling game input][input_behaviors_link]
-- [Handling collisions][collision_behaviors_link
+- [Handling Game Input][input_behaviors_link]
+- [Handling Collisions][collision_behaviors_link
 
 Flame Behaviors also provides some conventions on how to name and organize your code:
 - [Naming conventions][naming_conventions_link]
