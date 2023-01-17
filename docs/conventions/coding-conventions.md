@@ -55,7 +55,7 @@ never do any direct rendering.
 A behavior is allowed to have its own components for adding extra functionality related to the 
 behavior. For example, a behavior that makes an entity jump could have a `TimerComponent` to ensure
 that the entity can only jump once every 0.5 seconds. And that behavior can also use a 
-`KeyboardHandler` mixin to listen for the jump key to trigger the jump. But any logic that is not
+`KeyboardHandler` mixin to listen for the jump key to trigger the jump. Any logic that is not
 related to the behavior should not be in the behavior.
 
 #### Examples
