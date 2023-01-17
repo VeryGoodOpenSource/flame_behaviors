@@ -1,4 +1,4 @@
-# Input behaviors ⌨
+# Input Behaviors ⌨
 
 The `flame_behaviors` package also provides input behaviors. These behaviors are a layer over the
 existing Flame input mixins for components. These behaviors will trigger when the user interacts with their parent entity. So these events are always relative to the parent entity.
