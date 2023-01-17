@@ -5,7 +5,7 @@ but this API is not strongly typed. Components always get the colliding componen
 `PositionComponent` and developers need to manually check what type of class it is.
 
 `flame_behaviors` is all about enforcing a strongly typed API. It provides a special behavior
-called `CollisionBehavior` that describes what type of entity it will target for collision. It
+called `CollisionBehavior` that describes the type of entity being targeted for collision. It
 does not, however, do any real collision detection. That is done by the
 `PropagatingCollisionBehavior`.
 
