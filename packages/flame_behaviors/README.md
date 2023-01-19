@@ -41,7 +41,7 @@ View the full documentation [here][flame_behaviors_documentation].
 
 [ci_badge]: https://github.com/VeryGoodOpenSource/flame_behaviors/workflows/flame_behaviors/badge.svg
 [ci_link]: https://github.com/VeryGoodOpenSource/flame_behaviors/actions
-[coverage_badge]: https://raw.githubusercontent.com/VeryGoodOpenSource/flame_behaviors/main/packages/flame_behaviors/coverage_badge.svg
+[coverage_badge]: https://raw.githubusercontent.com/VeryGoodOpenSource/flame_behaviors/main/coverage_badge.svg
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT
 [pub_badge]: https://img.shields.io/pub/v/flame_behaviors.svg
