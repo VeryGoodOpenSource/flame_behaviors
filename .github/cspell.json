@@ -21,6 +21,7 @@
   "words": [
     "Hitbox",
     "gameplay",
-    "collidable"
+    "collidable",
+    "Draggables"
   ]
 }

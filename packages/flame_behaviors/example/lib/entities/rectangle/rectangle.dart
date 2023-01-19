@@ -15,12 +15,12 @@ class Rectangle extends PositionedEntity with HasPaint {
           anchor: Anchor.center,
           behaviors: [
             PropagatingCollisionBehavior(RectangleHitbox()),
-            RectangleCollisionBehavior(),
-            CircleCollisionBehavior(),
-            ScreenCollisionBehavior(),
-            MovementBehavior(velocity: velocity),
-            RotationBehavior(rotationSpeed: rotationSpeed),
-            FreezeBehavior(),
+            RectangleCollidingBehavior(),
+            CircleCollidingBehavior(),
+            ScreenCollidingBehavior(),
+            MovingBehavior(velocity: velocity),
+            RotatingBehavior(rotationSpeed: rotationSpeed),
+            FreezingBehavior(),
           ],
         );
 

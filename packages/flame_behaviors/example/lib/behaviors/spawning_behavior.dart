@@ -5,7 +5,7 @@ import 'package:example/main.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 
-class SpawnBehavior extends TappableBehavior<ExampleGame> {
+class SpawningBehavior extends TappableBehavior<ExampleGame> {
   final _rng = Random();
 
   @override

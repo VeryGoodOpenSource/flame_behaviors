@@ -2,14 +2,14 @@ import 'package:example/entities/entities.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 
-class FreezeBehavior extends TappableBehavior<Rectangle> {
-  MovementBehavior? movement;
+class FreezingBehavior extends TappableBehavior<Rectangle> {
+  MovingBehavior? movement;
 
   Vector2? originalVelocity;
 
   @override
   Future<void> onLoad() async {
-    movement = parent.findBehavior<MovementBehavior>();
+    movement = parent.findBehavior<MovingBehavior>();
   }
 
   @override

@@ -2,7 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 
-/// A mixin that adds behaviorial functionality to any kind of [Component].
+/// A mixin that adds behavioral functionality to any kind of [Component].
 ///
 /// Use this mixin when you can't extend [PositionedEntity] or [Entity] and
 /// still want to use behaviors. For example, if you want to add behaviors to
@@ -55,8 +55,8 @@ mixin EntityMixin on Component {
 }
 
 /// {@template entity}
-/// The entity is the building block of a game. It represents a visual game
-/// object that can hold multiple `Behavior`s, which in turn define how the
+/// The entity is the building block of a game. It represents a game object
+/// that can hold multiple `Behavior`s, which in turn define how the
 /// entity behaves.
 ///
 /// The visualization of the entity is defined by the [Component]s that are
