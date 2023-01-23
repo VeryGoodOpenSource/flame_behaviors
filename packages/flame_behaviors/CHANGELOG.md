@@ -1,4 +1,11 @@
-# [0.1.1](https://github.com/VeryGoodOpenSource/flame_behaviors/compare/v0.1.0...v0.1.1) (2022-06-20)
+# [0.2.0](https://github.com/VeryGoodOpenSource/flame_behaviors/compare/v0.1.1...v) (2023-01-23)
+
+### Features
+
+* add dependabot ([#31](https://github.com/VeryGoodOpenSource/flame_behaviors/issues/31)) ([4b601a1](https://github.com/VeryGoodOpenSource/flame_behaviors/commit/4b601a1ff3a516e36ae850857f5c5e5a9de7303f))
+* update version constraints ([#26](https://github.com/VeryGoodOpenSource/flame_behaviors/issues/26)) ([05303be](https://github.com/VeryGoodOpenSource/flame_behaviors/commit/05303beeae80df6055f3b3fc8f5630f2643d40fe))
+
+## [0.1.1](https://github.com/VeryGoodOpenSource/flame_behaviors/compare/v0.1.0...v0.1.1) (2022-06-20)
 
 ### Bug Fixes
 
