@@ -30,7 +30,7 @@ Before creating a pull request please:
 1. Ensure the test suite passes.
 1. If you've changed the public API, make sure to update/add documentation.
 1. Format your code (`dart format .`).
-1. Analyze your code (`dart analyzer --fatal-infos --fatal-warnings .`).
+1. Analyze your code (`dart analyze --fatal-infos --fatal-warnings .`).
 1. Create the Pull Request.
 1. Verify that all status checks are passing.
 
