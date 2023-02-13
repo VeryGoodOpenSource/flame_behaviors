@@ -22,7 +22,7 @@ jobs:
     with:
       working_directory: packages/flame_behaviors
       flutter_channel: stable
-      flutter_version: 3.7.1
+      flutter_version: 3.7.3
 
   pana:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/pana.yml@v1
