@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 
 class Rectangle extends PositionedEntity with HasPaint {
   Rectangle({
-    super.position,
-    super.size,
     required double rotationSpeed,
     required Vector2 velocity,
+    super.position,
+    super.size,
   }) : super(
           anchor: Anchor.center,
           behaviors: [

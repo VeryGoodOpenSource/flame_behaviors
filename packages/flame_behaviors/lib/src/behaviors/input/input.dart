@@ -1,11 +1,11 @@
 export 'package:flame/input.dart'
     show
-        TapDownInfo,
-        TapUpInfo,
+        DragEndInfo,
         DragStartInfo,
         DragUpdateInfo,
-        DragEndInfo,
-        PointerHoverInfo;
+        PointerHoverInfo,
+        TapDownInfo,
+        TapUpInfo;
 
 export 'draggable_behavior.dart';
 export 'hoverable_behavior.dart';

@@ -9,10 +9,10 @@ import 'package:flutter/material.dart';
 
 class Circle extends PositionedEntity with HasPaint {
   Circle({
-    super.position,
-    super.size,
     required double rotationSpeed,
     required Vector2 velocity,
+    super.position,
+    super.size,
   }) : super(
           anchor: Anchor.center,
           behaviors: [
