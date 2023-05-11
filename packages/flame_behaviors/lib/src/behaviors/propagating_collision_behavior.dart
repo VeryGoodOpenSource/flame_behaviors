@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 /// the entity that is colliding with the [Parent] is an instance of [Collider].
 /// {@endtemplate}
 abstract class CollisionBehavior<Collider extends Component,
-    Parent extends PositionedEntity> extends Behavior<Parent> {
+    Parent extends EntityMixin> extends Behavior<Parent> {
   /// Check if the given component is an instance of [Collider].
   bool isValid(Component c) => c is Collider;
 
@@ -56,13 +56,25 @@ abstract class CollisionBehavior<Collider extends Component,
 /// **Note**: This behavior can also be used for collisions between entities
 /// and non-entity components, by passing the component's type as the
 /// `Collider` to the [CollisionBehavior].
+///
+/// The parent to which this behavior is added should be a [PositionComponent]
+/// that uses the [EntityMixin]. Flame behaviors comes with the
+/// [PositionedEntity] which does exactly that but any kind of position
+/// component will work.
 /// {@endtemplate}
-class PropagatingCollisionBehavior<Parent extends PositionedEntity>
+class PropagatingCollisionBehavior<Parent extends EntityMixin>
     extends Behavior<Parent> with CollisionCallbacks {
   /// {@macro propagating_collision_behavior}
   PropagatingCollisionBehavior(this._hitbox) : super(children: [_hitbox]);
 
   final ShapeHitbox _hitbox;
+
+  @override
+  @mustCallSuper
+  void onMount() {
+    assert(parent is PositionComponent, 'parent must be a PositionComponent');
+    super.onMount();
+  }
 
   @override
   Future<void> onLoad() async {
