@@ -24,6 +24,10 @@ class _EntityC extends PositionedEntity {
   _EntityC() : super(size: Vector2.all(16));
 }
 
+class _EntityD extends Entity {
+  _EntityD();
+}
+
 abstract class _CollisionBehavior<A extends Component,
     B extends PositionedEntity> extends CollisionBehavior<A, B> {
   bool onCollisionStartCalled = false;
@@ -59,7 +63,7 @@ class _CollisionBehaviorAtoComponent
 void main() {
   final flameTester = FlameTester(TestGame.new);
 
-  group('CollisionBehavior', () {
+  group('$CollisionBehavior', () {
     flameTester.testGameWidget(
       'isColliding returns true if it is current colliding with the Collider',
       setUp: (game, tester) async {
@@ -119,31 +123,53 @@ void main() {
     );
   });
 
-  group('PropagatingCollisionBehavior', () {
+  group('$PropagatingCollisionBehavior', () {
     flameTester.testGameWidget(
       'can be added to an Entity',
       setUp: (game, tester) async {
-        final passableCollisionBehavior = PropagatingCollisionBehavior(
+        final propagatingCollisionBehavior = PropagatingCollisionBehavior(
           RectangleHitbox(),
         );
-        final entityA = _EntityA(behaviors: [passableCollisionBehavior]);
+        final entityA = _EntityA(behaviors: [propagatingCollisionBehavior]);
 
         await game.ensureAdd(entityA);
       },
       verify: (game, tester) async {
         final entityA = game.firstChild<_EntityA>()!;
-        final passableCollisionBehavior =
+        final propagatingCollisionBehavior =
             entityA.firstChild<PropagatingCollisionBehavior>()!;
 
         expect(
           entityA.findBehavior<PropagatingCollisionBehavior>(),
-          equals(passableCollisionBehavior),
+          equals(propagatingCollisionBehavior),
         );
         expect(
-          passableCollisionBehavior.children
+          propagatingCollisionBehavior.children
               .whereType<RectangleHitbox>()
               .length,
           equals(1),
+        );
+      },
+    );
+
+    flameTester.testGameWidget(
+      'throws assertion exception if parent is not a positioned component',
+      setUp: (game, tester) async {
+        await game.ensureAdd(_EntityD());
+        return game.pauseEngine(); // Pausing engine to trigger it manually
+      },
+      verify: (game, tester) async {
+        final entity = game.firstChild<_EntityD>()!;
+        final propagatingCollisionBehavior = PropagatingCollisionBehavior(
+          RectangleHitbox(),
+        );
+
+        await expectLater(
+          () async {
+            await entity.add(propagatingCollisionBehavior);
+            game.update(0);
+          },
+          failsAssert('parent must be a PositionComponent'),
         );
       },
     );
