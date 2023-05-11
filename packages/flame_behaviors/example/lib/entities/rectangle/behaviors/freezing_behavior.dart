@@ -1,4 +1,5 @@
 import 'package:example/entities/entities.dart';
+import 'package:flame/experimental.dart' hide Rectangle;
 import 'package:flame/extensions.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 
@@ -13,13 +14,12 @@ class FreezingBehavior extends TappableBehavior<Rectangle> {
   }
 
   @override
-  bool onTapDown(TapDownInfo info) {
+  void onTapDown(TapDownEvent event) {
     if (movement?.velocity.isZero() ?? false) {
       movement?.velocity.setFrom(originalVelocity ?? Vector2.zero());
     } else {
       originalVelocity = movement?.velocity.clone();
       movement?.velocity.setFrom(Vector2.zero());
     }
-    return false;
   }
 }

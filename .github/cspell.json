@@ -22,6 +22,9 @@
     "Hitbox",
     "gameplay",
     "collidable",
-    "Draggables"
+    "Draggables",
+    "tappable",
+    "Tappable",
+    "hoverable"
   ]
 }

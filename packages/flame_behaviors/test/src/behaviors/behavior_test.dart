@@ -1,4 +1,4 @@
-// ignore_for_file: cascade_invocations
+// ignore_for_file: cascade_invocations, deprecated_member_use_from_same_package
 
 import 'package:flame/components.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
@@ -46,6 +46,23 @@ void main() {
         expect(behavior.containsPoint(Vector2.zero()), isTrue);
         expect(behavior.containsPoint(Vector2(31, 31)), isTrue);
         expect(behavior.containsPoint(Vector2(32, 32)), isFalse);
+      },
+    );
+
+    flameTester.testGameWidget(
+      'contains local point is relative to parent',
+      setUp: (game, tester) async {
+        final behavior = _TestBehavior();
+        final entity = _TestEntity(behaviors: [behavior]);
+        await game.ensureAdd(entity);
+      },
+      verify: (game, tester) async {
+        final entity = game.firstChild<_TestEntity>()!;
+        final behavior = entity.firstChild<_TestBehavior>()!;
+
+        expect(behavior.containsLocalPoint(Vector2.zero()), isTrue);
+        expect(behavior.containsLocalPoint(Vector2(31, 31)), isTrue);
+        expect(behavior.containsLocalPoint(Vector2(32, 32)), isFalse);
       },
     );
 
