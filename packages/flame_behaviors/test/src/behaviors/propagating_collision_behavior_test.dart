@@ -155,11 +155,11 @@ void main() {
     flameTester.testGameWidget(
       'throws assertion exception if parent is not a positioned component',
       setUp: (game, tester) async {
-        await game.ensureAdd(_EntityD());
+        await game.ensureAdd(PositionComponent(children: [_EntityD()]));
         return game.pauseEngine(); // Pausing engine to trigger it manually
       },
       verify: (game, tester) async {
-        final entity = game.firstChild<_EntityD>()!;
+        final entity = game.descendants().whereType<_EntityD>().first;
         final propagatingCollisionBehavior = PropagatingCollisionBehavior(
           RectangleHitbox(),
         );
