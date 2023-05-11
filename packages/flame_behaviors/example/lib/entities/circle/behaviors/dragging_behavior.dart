@@ -29,7 +29,7 @@ class DraggingBehavior extends DraggableBehavior<Circle> {
   @override
   void onDragEnd(DragEndEvent event) {
     movement?.velocity.setFrom(event.velocity);
-    return onDragEnd(event);
+    return super.onDragEnd(event);
   }
 
   @override
