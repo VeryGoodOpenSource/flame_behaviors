@@ -70,6 +70,13 @@ class PropagatingCollisionBehavior<Parent extends EntityMixin>
   final ShapeHitbox _hitbox;
 
   @override
+  @mustCallSuper
+  void onMount() {
+    assert(parent is PositionComponent, 'parent must be a PositionComponent');
+    super.onMount();
+  }
+
+  @override
   Future<void> onLoad() async {
     _hitbox
       ..onCollisionCallback = onCollision
