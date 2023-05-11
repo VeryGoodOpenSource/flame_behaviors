@@ -56,7 +56,7 @@ void main() {
         await game.ensureAdd(entity);
 
         final behavior = _TestBehavior();
-        await expectLater(
+        expect(
           entity.findBehavior<_TestBehavior>,
           throwsBehaviorNotFoundFor<_TestBehavior>(),
         );
@@ -67,7 +67,7 @@ void main() {
       verify: (game, tester) async {
         final entity = game.firstChild<_TestEntity>()!;
 
-        await expectLater(
+        expect(
           entity.findBehavior<_TestBehavior>,
           throwsBehaviorNotFoundFor<_TestBehavior>(),
         );

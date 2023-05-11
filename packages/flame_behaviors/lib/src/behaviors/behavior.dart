@@ -25,8 +25,14 @@ abstract class Behavior<Parent extends EntityMixin> extends Component
   }
 
   @override
+  @Deprecated('Will be removed in a future version of Flame')
   bool containsPoint(Vector2 point) {
     return parent.containsPoint(point);
+  }
+
+  @override
+  bool containsLocalPoint(Vector2 point) {
+    return parent.containsLocalPoint(point);
   }
 
   @override

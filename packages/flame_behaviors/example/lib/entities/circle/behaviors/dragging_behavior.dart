@@ -1,4 +1,5 @@
 import 'package:example/entities/entities.dart';
+import 'package:flame/experimental.dart' hide Circle;
 import 'package:flame/extensions.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 
@@ -13,27 +14,26 @@ class DraggingBehavior extends DraggableBehavior<Circle> {
   }
 
   @override
-  bool onDragStart(DragStartInfo info) {
+  void onDragStart(DragStartEvent event) {
     originalVelocity = movement?.velocity.clone();
     movement?.velocity.setFrom(Vector2.zero());
-    return false;
+    return super.onDragStart(event);
   }
 
   @override
-  bool onDragCancel() {
+  void onDragCancel(DragCancelEvent event) {
     movement?.velocity.setFrom(originalVelocity ?? Vector2.zero());
-    return false;
+    return super.onDragCancel(event);
   }
 
   @override
-  bool onDragEnd(DragEndInfo info) {
-    movement?.velocity.setFrom(info.velocity);
-    return false;
+  void onDragEnd(DragEndEvent event) {
+    movement?.velocity.setFrom(event.velocity);
+    return onDragEnd(event);
   }
 
   @override
-  bool onDragUpdate(DragUpdateInfo info) {
-    parent.position.add(info.delta.game);
-    return false;
+  void onDragUpdate(DragUpdateEvent event) {
+    parent.position.add(event.delta);
   }
 }
