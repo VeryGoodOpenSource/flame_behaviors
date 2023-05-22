@@ -1,4 +1,11 @@
-# [0.2.0](https://github.com/VeryGoodOpenSource/flame_behaviors/compare/v0.1.1...v) (2023-01-23)
+# [0.3.0](https://github.com/VeryGoodOpenSource/flame_behaviors/compare/v0.2.0...v0.3.0) (2023-05-11)
+
+### Features
+
+- migrate to flame v1.7.0 ([#43](https://github.com/VeryGoodOpenSource/flame_behaviors/pull/43)) ([08580f6](https://github.com/VeryGoodOpenSource/flame_behaviors/commit/08580f656abb12f38c1b16913c9cf5397e2b95a8))
+- make `PropagatingCollisionBehavior` more open ([#42](https://github.com/VeryGoodOpenSource/flame_behaviors/pull/42)) ([4ae0553](https://github.com/VeryGoodOpenSource/flame_behaviors/commit/4ae05534458ec7b66caf04e87afc5e8c25fba9ae))
+
+# [0.2.0](https://github.com/VeryGoodOpenSource/flame_behaviors/compare/v0.1.1...v0.2.0) (2023-01-23)
 
 ### Features
 
