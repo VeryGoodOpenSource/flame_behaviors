@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:example/entities/entities.dart';
 import 'package:example/main.dart';
-import 'package:flame/experimental.dart' hide Circle, Rectangle;
+import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 
