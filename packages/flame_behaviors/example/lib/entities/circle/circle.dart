@@ -22,7 +22,7 @@ class Circle extends PositionedEntity with HasPaint {
             ScreenCollidingBehavior(),
             MovingBehavior(velocity: velocity),
             RotatingBehavior(rotationSpeed: rotationSpeed),
-            DraggingBehavior()
+            DraggingBehavior(),
           ],
         );
 

@@ -1,5 +1,5 @@
 import 'package:example/entities/entities.dart';
-import 'package:flame/experimental.dart' hide Rectangle;
+import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 
