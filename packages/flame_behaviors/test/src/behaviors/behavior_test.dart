@@ -5,8 +5,6 @@ import 'package:flame_behaviors/flame_behaviors.dart';
 import 'package:flame_test/flame_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../helpers/test_game.dart';
-
 class _TestEntity extends PositionedEntity {
   _TestEntity({super.behaviors}) : super(size: Vector2.all(32));
 }
@@ -14,10 +12,8 @@ class _TestEntity extends PositionedEntity {
 class _TestBehavior extends Behavior<_TestEntity> {}
 
 void main() {
-  final flameTester = FlameTester(TestGame.new);
-
   group('Behavior', () {
-    flameTester.testGameWidget(
+    flameGame.testGameWidget(
       'can be added to an Entity',
       setUp: (game, tester) async {
         final behavior = _TestBehavior();
@@ -32,7 +28,7 @@ void main() {
       },
     );
 
-    flameTester.testGameWidget(
+    flameGame.testGameWidget(
       'contains point is relative to parent',
       setUp: (game, tester) async {
         final behavior = _TestBehavior();
@@ -49,7 +45,7 @@ void main() {
       },
     );
 
-    flameTester.testGameWidget(
+    flameGame.testGameWidget(
       'contains local point is relative to parent',
       setUp: (game, tester) async {
         final behavior = _TestBehavior();
@@ -66,7 +62,7 @@ void main() {
       },
     );
 
-    flameTester.testGameWidget(
+    flameGame.testGameWidget(
       'debugMode is provided by the parent',
       setUp: (game, tester) async {
         final behavior = _TestBehavior();
@@ -94,7 +90,7 @@ void main() {
         );
       });
 
-      flameTester.testGameWidget(
+      flameGame.testGameWidget(
         'can have its own children',
         setUp: (game, tester) async {
           await game.ensureAdd(testEntity);
@@ -104,7 +100,7 @@ void main() {
         },
       );
 
-      flameTester.testGameWidget(
+      flameGame.testGameWidget(
         'can not have behaviors as children',
         setUp: (game, tester) async {
           await game.ensureAdd(testEntity);
@@ -117,7 +113,7 @@ void main() {
         },
       );
 
-      flameTester.testGameWidget(
+      flameGame.testGameWidget(
         'can not have entities as children',
         setUp: (game, tester) async {
           await game.ensureAdd(testEntity);

@@ -115,6 +115,6 @@ To learn more about how to use Flame Behaviors, check out our [article][article_
 [flame_package_link]: https://pub.dev/packages/flame
 [flame_behaviors_package_link]: https://pub.dev/packages/flame_behaviors
 [article_link]: https://verygood.ventures/blog/build-games-with-flame-behaviors
-[input_behaviors_link]: https://github.com/VeryGoodOpenSource/flame_behaviors/blob/docs/main/docs/input-behaviors.md
+[input_behaviors_link]: https://github.com/VeryGoodOpenSource/flame_behaviors/blob/docs/main/docs/event-behaviors.md
 [naming_conventions_link]: https://github.com/VeryGoodOpenSource/flame_behaviors/blob/docs/main/docs/conventions/naming-conventions.md
 [code_conventions_link]: https://github.com/VeryGoodOpenSource/flame_behaviors/blob/docs/main/docs/conventions/coding-conventions.md

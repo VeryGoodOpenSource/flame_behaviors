@@ -10,13 +10,13 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  flame: ">=1.8.0 <2.0.0"
+  flame: ">=1.10.0 <2.0.0"
   flutter:
     sdk: flutter
 
 dev_dependencies:
-  flame_test: ^1.11.0
+  flame_test: ^1.13.2
   flutter_test:
     sdk: flutter
   mocktail: ^0.3.0
-  very_good_analysis: ^4.0.0+1
+  very_good_analysis: ^5.1.0

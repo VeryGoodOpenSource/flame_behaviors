@@ -9,8 +9,9 @@ class FreezingBehavior extends TappableBehavior<Rectangle> {
   Vector2? originalVelocity;
 
   @override
-  Future<void> onLoad() async {
+  void onMount() {
     movement = parent.findBehavior<MovingBehavior>();
+    return super.onMount();
   }
 
   @override
@@ -21,5 +22,6 @@ class FreezingBehavior extends TappableBehavior<Rectangle> {
       originalVelocity = movement?.velocity.clone();
       movement?.velocity.setFrom(Vector2.zero());
     }
+    event.handled = true;
   }
 }

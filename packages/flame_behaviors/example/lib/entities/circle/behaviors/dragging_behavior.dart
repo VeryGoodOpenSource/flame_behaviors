@@ -9,8 +9,9 @@ class DraggingBehavior extends DraggableBehavior<Circle> {
   Vector2? originalVelocity;
 
   @override
-  Future<void> onLoad() async {
+  void onMount() {
     movement = parent.findBehavior<MovingBehavior>();
+    return super.onMount();
   }
 
   @override

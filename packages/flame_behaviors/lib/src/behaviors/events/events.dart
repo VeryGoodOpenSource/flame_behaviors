@@ -1,4 +1,4 @@
-export 'package:flame/input.dart'
+export 'package:flame/events.dart'
     show
         DragEndInfo,
         DragStartInfo,

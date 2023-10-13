@@ -15,10 +15,8 @@ class _TestEntity extends Entity {
 class _TestBehavior extends Behavior<_TestEntity> {}
 
 void main() {
-  final flameTester = FlameTester(TestGame.new);
-
   group('Entity', () {
-    flameTester.testGameWidget(
+    flameGame.testGameWidget(
       'adds behaviors directly to itself',
       setUp: (game, tester) async {
         final behavior = _TestBehavior();
@@ -33,7 +31,7 @@ void main() {
       },
     );
 
-    flameTester.testGameWidget(
+    flameGame.testGameWidget(
       'adds behaviors to itself',
       setUp: (game, tester) async {
         final behavior = _TestBehavior();
@@ -49,7 +47,7 @@ void main() {
       },
     );
 
-    flameTester.testGameWidget(
+    flameGame.testGameWidget(
       'behavior can be removed from entity and the internal cache',
       setUp: (game, tester) async {
         final entity = _TestEntity(behaviors: []);
@@ -74,7 +72,7 @@ void main() {
       },
     );
 
-    flameTester.testGameWidget(
+    flameGame.testGameWidget(
       'can correctly confirm if it has a behavior',
       setUp: (game, tester) async {
         final entity = _TestEntity(behaviors: []);

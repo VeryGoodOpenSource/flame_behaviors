@@ -1,4 +1,4 @@
-import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 
 /// {@template hoverable_behavior}
@@ -9,4 +9,5 @@ import 'package:flame_behaviors/flame_behaviors.dart';
 /// behaviors.
 /// {@endtemplate}
 abstract class HoverableBehavior<Parent extends EntityMixin>
-    extends Behavior<Parent> with Hoverable {}
+    // ignore: deprecated_member_use
+    extends Behavior<Parent> with HoverCallbacks {}

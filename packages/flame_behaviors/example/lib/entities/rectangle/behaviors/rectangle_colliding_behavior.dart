@@ -14,8 +14,7 @@ class RectangleCollidingBehavior
 
   @override
   void onCollisionEnd(Rectangle other) {
-    if (!isColliding) {
-      parent.paint.color = parent.defaultColor;
-    }
+    if (isColliding) return;
+    parent.paint.color = parent.defaultColor;
   }
 }
