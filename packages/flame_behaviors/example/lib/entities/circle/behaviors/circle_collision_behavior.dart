@@ -13,7 +13,8 @@ class CircleCollisionBehavior extends CollisionBehavior<Circle, Circle> {
 
   @override
   void onCollisionEnd(Circle other) {
-    if (isColliding) return;
-    parent.paint.color = parent.defaultColor;
+    if (!isColliding) {
+      parent.paint.color = parent.defaultColor;
+    }
   }
 }

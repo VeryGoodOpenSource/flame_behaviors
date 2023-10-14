@@ -30,7 +30,9 @@ mixin EntityMixin on Component {
   /// is fully mounted. If no behavior is found, it will throw a [StateError].
   T findBehavior<T extends Behavior>() {
     final it = findBehaviors<T>().iterator;
-    if (!it.moveNext()) throw StateError('No behavior of type $T found.');
+    if (!it.moveNext()) {
+      throw StateError('No behavior of type $T found.');
+    }
     return it.current;
   }
 
@@ -71,7 +73,9 @@ abstract class Entity extends Component with EntityMixin {
           children?.whereType<Behavior>().isEmpty ?? true,
           'Behaviors cannot be added to as a child directly.',
         ) {
-    if (behaviors != null) addAll(behaviors);
+    if (behaviors != null) {
+      addAll(behaviors);
+    }
   }
 }
 
@@ -98,6 +102,8 @@ abstract class PositionedEntity extends PositionComponent with EntityMixin {
           children?.whereType<Behavior>().isEmpty ?? true,
           'Behaviors cannot be added to as a child directly.',
         ) {
-    if (behaviors != null) addAll(behaviors);
+    if (behaviors != null) {
+      addAll(behaviors);
+    }
   }
 }
