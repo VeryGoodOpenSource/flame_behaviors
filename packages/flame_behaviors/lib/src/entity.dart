@@ -67,6 +67,7 @@ abstract class Entity extends Component with EntityMixin {
   Entity({
     super.children,
     super.priority,
+    super.key,
     Iterable<Behavior>? behaviors,
   }) : assert(
           children?.whereType<Behavior>().isEmpty ?? true,
@@ -91,9 +92,11 @@ abstract class PositionedEntity extends PositionComponent with EntityMixin {
     super.size,
     super.scale,
     super.angle,
+    super.nativeAngle,
     super.anchor,
     super.children,
     super.priority,
+    super.key,
     Iterable<Behavior>? behaviors,
   }) : assert(
           children?.whereType<Behavior>().isEmpty ?? true,

@@ -1,4 +1,4 @@
-import 'package:flame/experimental.dart';
+import 'package:flame/events.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 
 /// {@template tappable_behavior}

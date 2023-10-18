@@ -13,8 +13,8 @@ on:
     paths:
       - ".github/workflows/flame_behaviors.yaml"
       - "packages/flame_behaviors/lib/**"
-      - packages/flame_behaviors/"test/**"
-      - packages/flame_behaviors/"pubspec.yaml"
+      - "packages/flame_behaviors/test/**"
+      - "packages/flame_behaviors/pubspec.yaml"
 
 jobs:
   build:
@@ -22,7 +22,7 @@ jobs:
     with:
       working_directory: packages/flame_behaviors
       flutter_channel: stable
-      flutter_version: 3.7.3
+      flutter_version: 3.13.5
 
   pana:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/pana.yml@v1
