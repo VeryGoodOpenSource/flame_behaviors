@@ -41,7 +41,7 @@ class MyEntityCollisionBehavior extends CollisionBehavior<MyCollidingEntity, MyP
   }
 }
 
-class MyParentEntity extends Entity {O
+class MyParentEntity extends Entity {
   MyParentEntity() : super(
           behaviors: [
             PropagatingCollisionBehavior(RectangleHitbox()),
