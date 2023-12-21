@@ -1,3 +1,5 @@
-# 0.0.1-dev.0
+# 0.1.0 (2023-12-21)
 
-- chore: project creation
+- initial release
+
+# 0.0.1-dev.0

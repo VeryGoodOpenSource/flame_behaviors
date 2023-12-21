@@ -1,6 +1,6 @@
 name: flame_steering_behaviors
 description: Flame Steering Behaviors brings steering algorithms to the behavior pattern, built by Very Good Ventures.
-version: 0.0.1-dev.0
+version: 0.1.0
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
