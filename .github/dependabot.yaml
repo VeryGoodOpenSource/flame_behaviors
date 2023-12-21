@@ -12,3 +12,11 @@ updates:
     directory: "/packages/flame_behaviors/example"
     schedule:
       interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/packages/flame_steering_behaviors"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/packages/flame_steering_behaviors/example"
+    schedule:
+      interval: "daily"

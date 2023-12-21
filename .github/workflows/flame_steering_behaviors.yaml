@@ -1,0 +1,30 @@
+name: flame_steering_behaviors
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/flame_steering_behaviors.yaml"
+      - "packages/flame_steering_behaviors/lib/**"
+      - "packages/flame_steering_behaviors/test/**"
+      - "packages/flame_steering_behaviors/pubspec.yaml"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/flame_steering_behaviors.yaml"
+      - "packages/flame_steering_behaviors/lib/**"
+      - "packages/flame_steering_behaviors/test/**"
+      - "packages/flame_steering_behaviors/pubspec.yaml"
+
+jobs:
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
+    with:
+      working_directory: packages/flame_steering_behaviors
+      flutter_channel: stable
+      flutter_version: 3.13.5
+
+  pana:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/pana.yml@v1
+    with:
+      working_directory: packages/flame_steering_behaviors
