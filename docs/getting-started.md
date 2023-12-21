@@ -5,7 +5,7 @@
 In order to use Flame Behaviors you must have the [Flame package][flame_package_link] added to
 your project.
 
-> **Note**: Flame Behaviors requires Flame `">=1.6.0 <2.0.0"`
+> **Note**: Flame Behaviors requires Flame `">=1.10.0 <2.0.0"`
 
 ## Installing 🧑‍💻
 
