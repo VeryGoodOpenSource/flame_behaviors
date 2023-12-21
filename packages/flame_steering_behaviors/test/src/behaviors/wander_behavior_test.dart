@@ -10,9 +10,9 @@ import '../../helpers/helpers.dart';
 
 class _MockRandom extends Mock implements Random {}
 
-const startAngle = 90 * degrees2Radians;
-const randomValue = 0.25;
-const maximumAngle = 90 * degrees2Radians;
+const _startAngle = 90 * degrees2Radians;
+const _randomValue = 0.25;
+const _maximumAngle = 90 * degrees2Radians;
 
 void main() {
   final flameTester = FlameTester(TestGame.new);
@@ -22,6 +22,7 @@ void main() {
 
     setUp(() {
       random = _MockRandom();
+      when(random.nextDouble).thenReturn(_randomValue);
     });
 
     test('fall back to normal Random if none is given', () {
@@ -37,12 +38,10 @@ void main() {
     flameTester.testGameWidget(
       'calculates the new angle and wandering force',
       setUp: (game, tester) async {
-        when(random.nextDouble).thenReturn(randomValue);
-
         final behavior = WanderBehavior(
           circleDistance: 40,
-          maximumAngle: maximumAngle,
-          startingAngle: startAngle,
+          maximumAngle: _maximumAngle,
+          startingAngle: _startAngle,
           random: random,
         );
 
@@ -56,14 +55,14 @@ void main() {
         // The verify does a pump before it calls this so we have a new initial
         // angle.
         const initialAngle =
-            startAngle + randomValue * maximumAngle - maximumAngle * 0.5;
+            _startAngle + _randomValue * _maximumAngle - _maximumAngle * 0.5;
         expect(behavior.angle, initialAngle);
 
         game.update(1);
 
         expect(
           behavior.angle,
-          initialAngle + randomValue * maximumAngle - maximumAngle * 0.5,
+          initialAngle + _randomValue * _maximumAngle - _maximumAngle * 0.5,
         );
         expect(parent.velocity, closeToVector(Vector2(15.3, 36.95), 0.01));
       },
