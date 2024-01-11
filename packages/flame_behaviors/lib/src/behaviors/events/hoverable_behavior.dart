@@ -9,4 +9,11 @@ import 'package:flame_behaviors/flame_behaviors.dart';
 /// behaviors.
 /// {@endtemplate}
 abstract class HoverableBehavior<Parent extends EntityMixin>
-    extends Behavior<Parent> with HoverCallbacks {}
+    extends Behavior<Parent> with HoverCallbacks {
+  /// {@macro hoverable_behavior}
+  HoverableBehavior({
+    super.children,
+    super.priority,
+    super.key,
+  });
+}
