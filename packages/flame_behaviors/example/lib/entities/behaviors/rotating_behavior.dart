@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flame/components.dart';
@@ -11,7 +12,7 @@ class RotatingBehavior extends Behavior<PositionedEntity> with HasGameRef {
   late final ScreenHitbox screenHitbox;
 
   @override
-  Future<void> onLoad() async {
+  FutureOr<void> onLoad() {
     screenHitbox = gameRef.children.whereType<ScreenHitbox>().first;
   }
 

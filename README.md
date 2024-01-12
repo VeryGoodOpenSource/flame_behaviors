@@ -41,6 +41,7 @@ View the full documentation [here](https://github.com/VeryGoodOpenSource/flame_b
 | Package                                                                                           | Pub                                                                                                      |
 | ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | [flame_behaviors](https://github.com/verygoodopensource/flame_behaviors/tree/main/packages/flame_behaviors)         | [![pub package](https://img.shields.io/pub/v/flame_behaviors.svg)](https://pub.dev/packages/flame_behaviors)         |
+| [flame_steering_behaviors](https://github.com/verygoodopensource/flame_behaviors/tree/main/packages/flame_steering_behaviors)         | [![pub package](https://img.shields.io/pub/v/flame_steering_behaviors.svg)](https://pub.dev/packages/flame_steering_behaviors)         |
 
 
 ## Quick Start 🚀

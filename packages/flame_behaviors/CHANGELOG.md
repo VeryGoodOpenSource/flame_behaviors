@@ -1,4 +1,21 @@
-# [0.2.0](https://github.com/VeryGoodOpenSource/flame_behaviors/compare/v0.1.1...v) (2023-01-23)
+# [1.1.0](https://github.com/VeryGoodOpenSource/flame_behaviors/compare/flame_behaviors-v1.0.0...flame_behaviors-v1.1.0) (2024-01-11)
+
+### Features
+
+- add `priority` and `key` to the constructor ([#57](https://github.com/VeryGoodOpenSource/flame_behaviors/pull/57)) ([cc6cb4a](https://github.com/VeryGoodOpenSource/flame_behaviors/commit/cc6cb4a635109a74d5002d7e16d0e5b3d7e0dce6))
+
+# [1.0.0](https://github.com/VeryGoodOpenSource/flame_behaviors/compare/v0.2.0...flame_behaviors-1.0.0) (2023-10-18)
+
+### Breaking Changes
+
+- migrate to flame v1.7.0 ([#43](https://github.com/VeryGoodOpenSource/flame_behaviors/pull/43)) ([08580f6](https://github.com/VeryGoodOpenSource/flame_behaviors/commit/08580f656abb12f38c1b16913c9cf5397e2b95a8))
+- migrate to flame v1.10.0 ([#46](https://github.com/VeryGoodOpenSource/flame_behaviors/pull/46)) ([9963591](https://github.com/VeryGoodOpenSource/flame_behaviors/commit/9963591d4c0cc1da389ba8446740f8747549b775))
+
+### Bug Fixes
+
+- make `PropagatingCollisionBehavior` more open ([#42](https://github.com/VeryGoodOpenSource/flame_behaviors/pull/42)) ([4ae0553](https://github.com/VeryGoodOpenSource/flame_behaviors/commit/4ae05534458ec7b66caf04e87afc5e8c25fba9ae))
+
+# [0.2.0](https://github.com/VeryGoodOpenSource/flame_behaviors/compare/v0.1.1...v0.2.0) (2023-01-23)
 
 ### Features
 

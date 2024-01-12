@@ -1,5 +1,5 @@
 import 'package:example/entities/entities.dart';
-import 'package:flame/experimental.dart' hide Rectangle;
+import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 
@@ -9,8 +9,9 @@ class FreezingBehavior extends TappableBehavior<Rectangle> {
   Vector2? originalVelocity;
 
   @override
-  Future<void> onLoad() async {
+  void onMount() {
     movement = parent.findBehavior<MovingBehavior>();
+    return super.onMount();
   }
 
   @override
@@ -21,5 +22,6 @@ class FreezingBehavior extends TappableBehavior<Rectangle> {
       originalVelocity = movement?.velocity.clone();
       movement?.velocity.setFrom(Vector2.zero());
     }
+    event.handled = true;
   }
 }

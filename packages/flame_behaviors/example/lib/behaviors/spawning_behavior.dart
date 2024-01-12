@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:example/entities/entities.dart';
 import 'package:example/main.dart';
-import 'package:flame/experimental.dart' hide Circle, Rectangle;
+import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 
@@ -20,6 +20,7 @@ class SpawningBehavior extends TappableBehavior<ExampleGame> {
 
   @override
   void onTapDown(TapDownEvent event) {
+    if (event.handled) return;
     parent.add(nextRandomEntity(event.canvasPosition));
   }
 
@@ -29,26 +30,21 @@ class SpawningBehavior extends TappableBehavior<ExampleGame> {
     final velocity = (Vector2.random(_rng) - Vector2.random(_rng)) * 300;
     final shapeType = Shapes.values[_rng.nextInt(Shapes.values.length)];
 
-    switch (shapeType) {
-      case Shapes.circle:
-        return Circle(
+    return switch (shapeType) {
+      Shapes.circle => Circle(
           position: position,
           size: size,
           velocity: velocity,
           rotationSpeed: rotationSpeed,
-        );
-      case Shapes.rectangle:
-        return Rectangle(
+        ),
+      Shapes.rectangle => Rectangle(
           position: position,
           size: size,
           velocity: velocity,
           rotationSpeed: rotationSpeed,
-        );
-    }
+        ),
+    };
   }
 }
 
-enum Shapes {
-  circle,
-  rectangle,
-}
+enum Shapes { circle, rectangle }

@@ -2,11 +2,10 @@
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/game.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 import 'package:flame_test/flame_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import '../../helpers/helpers.dart';
 
 class _EntityA extends PositionedEntity {
   _EntityA({
@@ -60,8 +59,10 @@ class _CollisionBehaviorAtoC extends _CollisionBehavior<_EntityC, _EntityA> {}
 class _CollisionBehaviorAtoComponent
     extends _CollisionBehavior<PositionComponent, _EntityA> {}
 
+class _TestGame extends FlameGame with HasCollisionDetection {}
+
 void main() {
-  final flameTester = FlameTester(TestGame.new);
+  final flameTester = FlameTester(_TestGame.new);
 
   group('$CollisionBehavior', () {
     flameTester.testGameWidget(
