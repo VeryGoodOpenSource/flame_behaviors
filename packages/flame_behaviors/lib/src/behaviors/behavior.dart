@@ -15,6 +15,8 @@ abstract class Behavior<Parent extends EntityMixin> extends Component
   /// {@macro behavior}
   Behavior({
     super.children,
+    super.priority,
+    super.key,
   });
 
   @override

@@ -5,4 +5,11 @@ import 'package:flame_behaviors/flame_behaviors.dart';
 /// A behavior that makes an [Entity] tappable.
 /// {@endtemplate}
 abstract class TappableBehavior<Parent extends EntityMixin>
-    extends Behavior<Parent> with TapCallbacks {}
+    extends Behavior<Parent> with TapCallbacks {
+  /// {@macro tappable_behavior}
+  TappableBehavior({
+    super.children,
+    super.priority,
+    super.key,
+  });
+}

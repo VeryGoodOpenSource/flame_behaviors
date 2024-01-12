@@ -1,3 +1,9 @@
+# [1.1.0](https://github.com/VeryGoodOpenSource/flame_behaviors/compare/flame_behaviors-v1.0.0...flame_behaviors-v1.1.0) (2024-01-11)
+
+### Features
+
+- add `priority` and `key` to the constructor ([#57](https://github.com/VeryGoodOpenSource/flame_behaviors/pull/57)) ([cc6cb4a](https://github.com/VeryGoodOpenSource/flame_behaviors/commit/cc6cb4a635109a74d5002d7e16d0e5b3d7e0dce6))
+
 # [1.0.0](https://github.com/VeryGoodOpenSource/flame_behaviors/compare/v0.2.0...flame_behaviors-1.0.0) (2023-10-18)
 
 ### Breaking Changes
