@@ -35,6 +35,6 @@ class DraggingBehavior extends DraggableBehavior<Circle> {
 
   @override
   void onDragUpdate(DragUpdateEvent event) {
-    parent.position.add(event.delta);
+    parent.position.add(event.localDelta);
   }
 }
