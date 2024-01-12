@@ -10,6 +10,13 @@ import 'package:flutter/material.dart';
 /// {@endtemplate}
 abstract class CollisionBehavior<Collider extends Component,
     Parent extends EntityMixin> extends Behavior<Parent> {
+  /// {@macro collision_behavior}
+  CollisionBehavior({
+    super.children,
+    super.priority,
+    super.key,
+  });
+
   /// Check if the given component is an instance of [Collider].
   bool isValid(Component c) => c is Collider;
 
@@ -65,7 +72,11 @@ abstract class CollisionBehavior<Collider extends Component,
 class PropagatingCollisionBehavior<Parent extends EntityMixin>
     extends Behavior<Parent> with CollisionCallbacks {
   /// {@macro propagating_collision_behavior}
-  PropagatingCollisionBehavior(this._hitbox) : super(children: [_hitbox]);
+  PropagatingCollisionBehavior(
+    this._hitbox, {
+    super.priority,
+    super.key,
+  }) : super(children: [_hitbox]);
 
   final ShapeHitbox _hitbox;
 
