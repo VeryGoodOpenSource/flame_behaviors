@@ -22,6 +22,7 @@ track of the issue.
 
 Before creating a pull request please:
 
+1. Ensure you are running the latest version of Flutter and Dart.
 1. Fork the repository and create your branch from `main`.
 1. Install all dependencies (`flutter packages get` or `pub get`).
 1. Squash your commits and ensure you have a meaningful commit message.
