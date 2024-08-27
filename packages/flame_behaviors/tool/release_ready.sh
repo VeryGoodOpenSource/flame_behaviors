@@ -1,6 +1,4 @@
-# Ensures that the package or brick is ready for a release.
-# 
-# Will update the version.dart file and update the CHANGELOG.md.
+# Ensures that the package is ready for release.
 #
 # Set it up for a new version:
 # `./release_ready.sh <version>
