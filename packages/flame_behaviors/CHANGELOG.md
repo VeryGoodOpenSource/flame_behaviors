@@ -1,8 +1,5 @@
-# 1.2.0
+# [1.2.0](https://github.com/VeryGoodOpenSource/flame_behaviors/compare/flame_behaviors-v1.1.0...flame_behaviors-v1.2.0) (2024-08-27)
 
-- chore(deps): bump very_good_analysis from 4.0.0+1 to 5.1.0 in /packages/flame_behaviors/example ([#54](https://github.com/VeryGoodOpenSource/flame_behaviors/pull/54))
-- chore(deps): bump very_good_analysis from 5.1.0 to 6.0.0 in /packages/flame_behaviors/example ([#61](https://github.com/VeryGoodOpenSource/flame_behaviors/pull/61))
-- chore(deps): bump very_good_analysis from 5.1.0 to 6.0.0 in /packages/flame_behaviors ([#62](https://github.com/VeryGoodOpenSource/flame_behaviors/pull/62))
 - chore: tighten dependencies ([#64](https://github.com/VeryGoodOpenSource/flame_behaviors/pull/64))
 
 # [1.1.0](https://github.com/VeryGoodOpenSource/flame_behaviors/compare/flame_behaviors-v1.0.0...flame_behaviors-v1.1.0) (2024-01-11)
