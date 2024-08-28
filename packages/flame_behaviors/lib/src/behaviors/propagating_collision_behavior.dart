@@ -98,7 +98,7 @@ class PropagatingCollisionBehavior<Parent extends EntityMixin>
   }
 
   /// List of [CollisionBehavior]s to which it can propagate to.
-  List<CollisionBehavior> _propagateToBehaviors = [];
+  Iterable<CollisionBehavior> _propagateToBehaviors = [];
 
   /// Tries to find the entity that is colliding with the given entity.
   ///
