@@ -20,7 +20,7 @@ class SeparationBehavior<Parent extends Steerable>
   final double maxAcceleration;
 
   /// The entities to separate from.
-  final List<PositionComponent> entities;
+  final Iterable<PositionComponent> entities;
 
   @override
   void update(double dt) {

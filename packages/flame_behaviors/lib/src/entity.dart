@@ -8,7 +8,7 @@ import 'package:flame_behaviors/flame_behaviors.dart';
 /// still want to use behaviors. For example, if you want to add behaviors to
 /// a [SpriteComponent], [TextComponent], or even a [FlameGame] itself.
 mixin EntityMixin on Component {
-  List<Behavior>? _behaviors;
+  Iterable<Behavior>? _behaviors;
 
   /// Returns a list of behaviors with the given type, that are attached to
   /// this entity.

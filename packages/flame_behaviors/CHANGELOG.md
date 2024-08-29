@@ -1,3 +1,8 @@
+# [1.2.0](https://github.com/VeryGoodOpenSource/flame_behaviors/compare/flame_behaviors-v1.1.0...flame_behaviors-v1.2.0) (2024-08-27)
+
+- chore: tighten dependencies ([#64](https://github.com/VeryGoodOpenSource/flame_behaviors/pull/64))
+- feat: Flame 1.19 support ([#69](https://github.com/VeryGoodOpenSource/flame_behaviors/pull/69))
+
 # [1.1.0](https://github.com/VeryGoodOpenSource/flame_behaviors/compare/flame_behaviors-v1.0.0...flame_behaviors-v1.1.0) (2024-01-11)
 
 ### Features
