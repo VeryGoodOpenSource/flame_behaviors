@@ -11,22 +11,18 @@ jobs:
       run:
         working-directory: ./packages/flame_steering_behaviors
     permissions:
-      id-token: write # This is required for requesting the JWT
+      id-token: write # Required for authentication using OIDC
     runs-on: ubuntu-latest
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v4
+      - name: 🎯 Setup Dart
+        uses: dart-lang/setup-dart@v1
       - name: 🐦 Setup Flutter
         uses: subosito/flutter-action@v2
-      - name: 🪪 Get Id Token
-        uses: actions/github-script@v7
-        with:
-          script: |
-            let pub_token = await core.getIDToken('https://pub.dev')
-            core.exportVariable('PUB_TOKEN', pub_token)
-      - name: 📢 Authenticate
-        run: flutter pub pub token add https://pub.dev --env-var PUB_TOKEN
       - name: 📦 Install Dependencies
         run: flutter pub get
+      - name: 🌵 Dry Run
+        run: dart pub publish --dry-run
       - name: 📢 Publish
-        run: flutter pub publish -f
+        run: dart pub publish --force
