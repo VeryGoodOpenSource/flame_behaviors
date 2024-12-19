@@ -1,4 +1,5 @@
-// ignore_for_file: cascade_invocations
+// Not needed for test files
+// ignore_for_file: cascade_invocation
 
 import 'package:example/src/behaviors/behaviors.dart';
 import 'package:flame/components.dart';
