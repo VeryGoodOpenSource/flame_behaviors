@@ -27,7 +27,7 @@ class Circle extends PositionedEntity with HasPaint {
           ],
         );
 
-  final defaultColor = Colors.blue.withOpacity(0.8);
+  final defaultColor = Colors.blue.withValues(alpha: 0.8);
 
   @override
   void onMount() {
