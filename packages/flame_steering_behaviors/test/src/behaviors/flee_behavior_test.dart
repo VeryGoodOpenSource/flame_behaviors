@@ -1,3 +1,4 @@
+// Not needed for test files
 // ignore_for_file: cascade_invocations
 
 import 'package:flame/extensions.dart';

@@ -1,3 +1,4 @@
+// Not needed for test files
 // ignore_for_file: prefer_const_constructors, cascade_invocations
 import 'package:flame/extensions.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
