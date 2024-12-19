@@ -1,3 +1,4 @@
+// Not needed for test files
 // ignore_for_file: cascade_invocations, deprecated_member_use_from_same_package
 
 import 'package:flame/components.dart';
