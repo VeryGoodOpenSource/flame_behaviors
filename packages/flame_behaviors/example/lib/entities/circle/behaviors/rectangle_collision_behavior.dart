@@ -4,7 +4,7 @@ import 'package:flame_behaviors/flame_behaviors.dart';
 import 'package:flutter/material.dart';
 
 class RectangleCollisionBehavior extends CollisionBehavior<Rectangle, Circle> {
-  final _collisionColor = Colors.yellow.withOpacity(0.8);
+  final _collisionColor = Colors.yellow.withValues(alpha: 0.8);
 
   @override
   void onCollisionStart(Set<Vector2> intersectionPoints, Rectangle other) {

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class RectangleCollidingBehavior
     extends CollisionBehavior<Rectangle, Rectangle> {
-  final _collisionColor = Colors.yellow.withOpacity(0.8);
+  final _collisionColor = Colors.yellow.withValues(alpha: 0.8);
 
   @override
   void onCollisionStart(Set<Vector2> intersectionPoints, Rectangle other) {

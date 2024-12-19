@@ -24,7 +24,7 @@ class Rectangle extends PositionedEntity with HasPaint {
           ],
         );
 
-  final defaultColor = Colors.red.withOpacity(0.8);
+  final defaultColor = Colors.red.withValues(alpha: 0.8);
 
   @override
   void onMount() {
