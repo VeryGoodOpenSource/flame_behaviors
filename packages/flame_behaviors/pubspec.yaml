@@ -7,8 +7,8 @@ issue_tracker: https://github.com/VeryGoodOpenSource/flame_behaviors/issues
 documentation: https://github.com/VeryGoodOpenSource/flame_behaviors/tree/main/docs
 
 environment:
-  sdk: ">=3.6.0 <4.0.0"
-  flutter: ">=3.27.1"
+  sdk: ">=3.7.0 <4.0.0"
+  flutter: ">=3.32.7"
 
 dependencies:
   flame: ^1.30.1
