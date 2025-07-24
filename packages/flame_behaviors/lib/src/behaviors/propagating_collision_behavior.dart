@@ -110,6 +110,10 @@ class PropagatingCollisionBehavior<Parent extends EntityMixin>
   /// or a [Entity]. If it is neither, it will return [other].
   Component? _findEntity(PositionComponent other) {
     final parent = other.parent;
+    if (!other.isMounted) {
+      return null;
+    }
+
     if (parent is! PropagatingCollisionBehavior && parent is! Entity) {
       if (other is ShapeHitbox) {
         return other.parent;
@@ -119,7 +123,7 @@ class PropagatingCollisionBehavior<Parent extends EntityMixin>
 
     return parent is Entity
         ? parent
-        : (parent as PropagatingCollisionBehavior?)!.parent;
+        : (parent as PropagatingCollisionBehavior?)?.parent;
   }
 
   @override
