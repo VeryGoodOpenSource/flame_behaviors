@@ -88,7 +88,7 @@ class PropagatingCollisionBehavior<Parent extends EntityMixin>
   }
 
   @override
-  Future<void> onLoad() async {
+  void onLoad() {
     _hitbox
       ..onCollisionCallback = onCollision
       ..onCollisionStartCallback = onCollisionStart
