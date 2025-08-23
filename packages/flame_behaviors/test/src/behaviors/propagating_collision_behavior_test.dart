@@ -28,8 +28,11 @@ class _EntityD extends Entity {
   _EntityD();
 }
 
-abstract class _CollisionBehavior<A extends Component,
-    B extends PositionedEntity> extends CollisionBehavior<A, B> {
+abstract class _CollisionBehavior<
+  A extends Component,
+  B extends PositionedEntity
+>
+    extends CollisionBehavior<A, B> {
   bool onCollisionStartCalled = false;
   bool onCollisionCalled = false;
   bool onCollisionEndCalled = false;

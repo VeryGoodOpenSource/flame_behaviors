@@ -8,8 +8,11 @@ import 'package:flutter/material.dart';
 /// [PropagatingCollisionBehavior] propagates the collision to this behavior if
 /// the entity that is colliding with the [Parent] is an instance of [Collider].
 /// {@endtemplate}
-abstract class CollisionBehavior<Collider extends Component,
-    Parent extends EntityMixin> extends Behavior<Parent> {
+abstract class CollisionBehavior<
+  Collider extends Component,
+  Parent extends EntityMixin
+>
+    extends Behavior<Parent> {
   /// {@macro collision_behavior}
   CollisionBehavior({
     super.children,
@@ -70,7 +73,8 @@ abstract class CollisionBehavior<Collider extends Component,
 /// component will work.
 /// {@endtemplate}
 class PropagatingCollisionBehavior<Parent extends EntityMixin>
-    extends Behavior<Parent> with CollisionCallbacks {
+    extends Behavior<Parent>
+    with CollisionCallbacks {
   /// {@macro propagating_collision_behavior}
   PropagatingCollisionBehavior(
     this._hitbox, {

@@ -4,7 +4,8 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame_behaviors/flame_behaviors.dart';
 
-class RotatingBehavior extends Behavior<PositionedEntity> with HasGameRef {
+class RotatingBehavior extends Behavior<PositionedEntity>
+    with HasGameReference {
   RotatingBehavior({required this.rotationSpeed});
 
   final double rotationSpeed;
@@ -13,7 +14,7 @@ class RotatingBehavior extends Behavior<PositionedEntity> with HasGameRef {
 
   @override
   FutureOr<void> onLoad() {
-    screenHitbox = gameRef.children.whereType<ScreenHitbox>().first;
+    screenHitbox = game.children.whereType<ScreenHitbox>().first;
   }
 
   @override
