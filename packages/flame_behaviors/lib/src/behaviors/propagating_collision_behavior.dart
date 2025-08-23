@@ -103,7 +103,8 @@ class PropagatingCollisionBehavior<Parent extends EntityMixin>
   /// Tries to find the entity that is colliding with the given entity.
   ///
   /// It will check if the parent is either a [PropagatingCollisionBehavior]
-  /// or a [Entity]. If it is neither, it will return [other].
+  /// or a [Entity]. If it is neither, it will return [other] or null if [other]
+  /// is not mounted.
   Component? _findEntity(PositionComponent other) {
     final parent = other.parent;
     if (!other.isMounted) {
