@@ -28,8 +28,11 @@ class _EntityD extends Entity {
   _EntityD();
 }
 
-abstract class _CollisionBehavior<A extends Component,
-    B extends PositionedEntity> extends CollisionBehavior<A, B> {
+abstract class _CollisionBehavior<
+  A extends Component,
+  B extends PositionedEntity
+>
+    extends CollisionBehavior<A, B> {
   bool onCollisionStartCalled = false;
   bool onCollisionCalled = false;
   bool onCollisionEndCalled = false;
@@ -173,6 +176,47 @@ void main() {
           },
           failsAssert('parent must be a PositionComponent'),
         );
+      },
+    );
+
+    flameTester.testGameWidget(
+      '_findEntity() returns proper values during lifecycle',
+      setUp: (game, tester) async {
+        final collisionBehaviorAtoB = _CollisionBehaviorAtoB();
+        final entityA = _EntityA(
+          behaviors: [
+            PropagatingCollisionBehavior(RectangleHitbox()),
+            collisionBehaviorAtoB,
+          ],
+        );
+        final entityB = _EntityB(
+          behaviors: [PropagatingCollisionBehavior(RectangleHitbox())],
+        );
+        await game.ensureAdd(entityA);
+        await game.ensureAdd(entityB);
+        return game.pauseEngine(); // Pausing engine to trigger it manually
+      },
+      verify: (game, tester) async {
+        final entityA = game.firstChild<_EntityA>()!;
+        final entityB = game.firstChild<_EntityB>()!;
+        final collisionBehaviorAtoB =
+            entityA.firstChild<_CollisionBehaviorAtoB>()!;
+
+        final collisionPropagatingBehavior =
+            entityA.findBehavior<PropagatingCollisionBehavior>();
+
+        game.update(0);
+
+        expect(collisionBehaviorAtoB.onCollisionStartCalled, isTrue);
+        expect(collisionPropagatingBehavior.findEntity(entityB), isNotNull);
+
+        entityB.removeFromParent();
+
+        game.update(0);
+
+        expect(entityB.isMounted, isFalse);
+
+        expect(collisionPropagatingBehavior.findEntity(entityB), isNull);
       },
     );
 

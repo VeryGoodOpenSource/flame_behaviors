@@ -8,8 +8,11 @@ import 'package:flutter/material.dart';
 /// [PropagatingCollisionBehavior] propagates the collision to this behavior if
 /// the entity that is colliding with the [Parent] is an instance of [Collider].
 /// {@endtemplate}
-abstract class CollisionBehavior<Collider extends Component,
-    Parent extends EntityMixin> extends Behavior<Parent> {
+abstract class CollisionBehavior<
+  Collider extends Component,
+  Parent extends EntityMixin
+>
+    extends Behavior<Parent> {
   /// {@macro collision_behavior}
   CollisionBehavior({
     super.children,
@@ -35,7 +38,7 @@ abstract class CollisionBehavior<Collider extends Component,
         parent.findBehavior<PropagatingCollisionBehavior>();
 
     return propagatingCollisionBehavior.activeCollisions
-        .map(propagatingCollisionBehavior._findEntity)
+        .map(propagatingCollisionBehavior.findEntity)
         .whereType<Collider>()
         .isNotEmpty;
   }
@@ -70,7 +73,8 @@ abstract class CollisionBehavior<Collider extends Component,
 /// component will work.
 /// {@endtemplate}
 class PropagatingCollisionBehavior<Parent extends EntityMixin>
-    extends Behavior<Parent> with CollisionCallbacks {
+    extends Behavior<Parent>
+    with CollisionCallbacks {
   /// {@macro propagating_collision_behavior}
   PropagatingCollisionBehavior(
     this._hitbox, {
@@ -88,7 +92,7 @@ class PropagatingCollisionBehavior<Parent extends EntityMixin>
   }
 
   @override
-  Future<void> onLoad() async {
+  void onLoad() {
     _hitbox
       ..onCollisionCallback = onCollision
       ..onCollisionStartCallback = onCollisionStart
@@ -103,9 +107,14 @@ class PropagatingCollisionBehavior<Parent extends EntityMixin>
   /// Tries to find the entity that is colliding with the given entity.
   ///
   /// It will check if the parent is either a [PropagatingCollisionBehavior]
-  /// or a [Entity]. If it is neither, it will return [other].
-  Component? _findEntity(PositionComponent other) {
+  /// or a [Entity]. If it is neither, it will return [other] or null if [other]
+  /// is not mounted.
+  Component? findEntity(PositionComponent other) {
     final parent = other.parent;
+    if (!other.isMounted) {
+      return null;
+    }
+
     if (parent is! PropagatingCollisionBehavior && parent is! Entity) {
       if (other is ShapeHitbox) {
         return other.parent;
@@ -115,7 +124,7 @@ class PropagatingCollisionBehavior<Parent extends EntityMixin>
 
     return parent is Entity
         ? parent
-        : (parent as PropagatingCollisionBehavior?)!.parent;
+        : (parent as PropagatingCollisionBehavior?)?.parent;
   }
 
   @override
@@ -124,7 +133,7 @@ class PropagatingCollisionBehavior<Parent extends EntityMixin>
     PositionComponent other,
   ) {
     activeCollisions.add(other);
-    final otherEntity = _findEntity(other);
+    final otherEntity = findEntity(other);
     if (otherEntity == null) {
       return;
     }
@@ -140,7 +149,7 @@ class PropagatingCollisionBehavior<Parent extends EntityMixin>
   @override
   @mustCallSuper
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    final otherEntity = _findEntity(other);
+    final otherEntity = findEntity(other);
     if (otherEntity == null) {
       return;
     }
@@ -156,7 +165,7 @@ class PropagatingCollisionBehavior<Parent extends EntityMixin>
   @override
   void onCollisionEnd(PositionComponent other) {
     activeCollisions.remove(other);
-    final otherEntity = _findEntity(other);
+    final otherEntity = findEntity(other);
     if (otherEntity == null) {
       return;
     }
