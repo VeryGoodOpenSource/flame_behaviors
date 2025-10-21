@@ -7,6 +7,8 @@
 [![License: MIT][license_badge]][license_link]
 [![Powered by Flame][flame_badge_link]]([flame_link])
 
+> **Note:** This repository has been transferred to https://github.com/flame-engine/flame. For more information see https://github.com/VeryGoodOpenSource/flame_behaviors/issues/99
+
 Flame Behaviors applies separation of concerns to game logic in the form of Entities and Behaviors.
 
 Developed with 💙 and 🔥 by [Very Good Ventures][very_good_ventures_link] 🦄
